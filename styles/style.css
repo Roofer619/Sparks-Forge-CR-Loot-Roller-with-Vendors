@@ -1,0 +1,58 @@
+body {
+  background-color: #bfc1c2;
+  font-family: Arial, sans-serif;
+}
+#primary-roller-button {
+  background-color: #444;
+  color: #bfc1c2;
+}
+
+#activate-button {
+  background-color: #444;
+  color: #bfc1c2;
+}
+
+#sf-config-button {
+  background-color: #444;
+  color: #bfc1c2;
+}
+
+#sf-config-container {
+  background-color: #bfc1c2;
+  color: #444;
+}
+#loot-roller-button {
+  background-color: #444;
+  color: #bfc1c2;
+}
+
+#individual-buttons-container button {
+  background-color: #fcfdfd;
+  color: #444;
+}
+
+#individual-roll-container button:hover {
+  background-color: rgb(230, 248, 230);
+}
+
+#hoard-buttons-container button {
+  background-color: #bfc1c2;
+  color: #444;
+}
+
+#hoard-roll-container button:hover {
+  background-color: rgb(138, 143, 138);
+}
+#vendor-buttons-container button {
+  background-color: #eff6fa;
+  color: #444;
+}
+
+#vendor-buttons-container button:hover {
+  background-color: rgb(214, 250, 214);
+}
+
+.dialog > .content {
+  height: 300px;
+  overflow-y: auto;
+}

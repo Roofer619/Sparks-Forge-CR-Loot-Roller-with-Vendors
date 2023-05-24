@@ -1,0 +1,34 @@
+<div class="form-group">
+    <label>Enable Feature</label>
+    <input type="checkbox" name="enableFeature" data-dtype="Boolean" value="{{enableFeature}}" {{#if enableFeature}}checked{{/if}}>
+    <span class="setting-hint">Enable the SF LR feature.</span>
+  </div>
+  
+  <div id="sf-config-container" {{#unless enableFeature}}style="display:none;"{{/unless}}>
+    <form>
+      <input type="checkbox" id="GMOnlyDisabled" name="GMOnlyDisabled" data-dtype="Boolean" value="{{GMOnlyDisabled}}" {{#if GMOnlyDisabled}}checked{{/if}}>
+      <label>Allow non-GM Rolls:</label>
+      <br>
+  
+      <input type="checkbox" id="toggleTashas" name="toggleTashas" data-dtype="Boolean" value="{{toggleTashas}}" {{#if toggleTashas}}checked{{/if}}>
+      <label>Enable Tasha's:</label>
+      <br>
+    </form>
+    <hr>
+  </div>
+  <script src="module.js"></script>
+<script>
+  let toggleTashas = false;
+
+  function updateToggleTashas() {
+    toggleTashas = !toggleTashas;
+  
+    console.log(`Tasha's is Enabled = ${toggleTashas}`);
+  }
+  let GMOnlyDisabled = false;
+
+  function updateGMonlyDisabled() {
+    GMOnlyDisabled = !GMOnlyDisabled;
+  
+    console.log(`GMOnly is Enabled = ${GMOnlyDisabled}`);
+  }

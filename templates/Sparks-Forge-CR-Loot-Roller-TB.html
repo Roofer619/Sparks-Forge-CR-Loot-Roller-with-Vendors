@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sparks Forge CR Loot Roller TB</title>
+    <style>
+      #primary-roller-button {
+        width: 40px;
+        height: 40px;
+        position: fixed;
+        bottom: 48%;
+        left: 15px;
+        transform: translateY(-60%);
+      }
+
+      #loot-roller-button {
+        width: 85px;
+        height: 40px;
+        position: fixed;
+        bottom: 5%;
+        left: 230px;
+        transform: translateY(-60%);
+      }
+
+#individual-buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 45%;
+  left: 75px;
+}
+
+#hoard-buttons-container {
+  width: 105px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 49%;
+  left: 75px;
+}
+#individual-roll-container {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  left: 115px;
+  right: calc(100% + 15px);
+  top: 0;
+} 
+
+#hoard-roll-container {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  left: 115px;
+  right: calc(100% + 15px);
+  top: 0;
+}
+
+      #vendor-roller-button {
+        width: 100px;
+        height: 40px;
+        position: fixed;
+        bottom: 5%;
+        left: 310px;
+        transform: translateY(-60%);
+      }
+
+      #vendor-buttons-container {
+        width: 185px;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+        top: 25%;
+        left: 115px; 
+      }
+
+      #gs-vendor-roll-container {
+      width: 175px;
+      height: 100px;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      left: 185px;
+      right: calc(100% + 15px);
+      top: 0;
+      }
+
+      #Apothicary-vendor-roll-container {
+        width: 175px;
+      height: 100px;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      left: 185px;
+      right: calc(100% + 15px);
+      top: 0;
+      }
+
+      #Weapons-and-armor-vendor-roll-container {
+      width: 175px;
+      height: 100px;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      left: 185px;
+      right: calc(100% + 15px);
+      top: 0;
+      }
+
+      #black-market-roll-container {
+        width: 175px;
+      height: 100px;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      left: 185px;
+      right: calc(100% + 15px);
+      top: 0;
+      }
+
+      #individual-buttons-container-button, #hoard-buttons-container-button, #vendor-other-buttons-container, #vendor-buttons-container 
+       {
+        margin-top: 10px;
+      }
+      
+
+    </style>
+  </head>
+<body>
+  <button id="primary-roller-button" onclick="toggleLootRollerButtons()">LR</button>
+  <div id="primary-button-container" style="display: none;">
+<button id="loot-roller-button" onclick="toggleButtons()">Loot Roller</button>
+  <div id="button-container" style="display: none;">
+    <div id="individual-buttons-container">
+<button onclick="showIndividualButtons()">Individual Loot</button>
+<div id="individual-roll-container" style="display: none;">
+  <button onclick="rollIndividualTreasure('0-4')">CR 0-4</button>
+  <button onclick="rollIndividualTreasure('5-10')">CR 5-10</button>
+  <button onclick="rollIndividualTreasure('11-16')">CR 11-16</button>
+  <button onclick="rollIndividualTreasure('17+')">CR 17+</button>
+</div>
+</div>
+    <div id="hoard-buttons-container">
+      <button onclick="showHoardButtons()">Hoard Loot</button>        
+      <div id="hoard-roll-container" style="display: none;">
+        <button onclick="rollHoardTreasure('0-4')">CR 0-4</button>
+        <button onclick="rollHoardTreasure('5-10')">CR 5-10</button>
+        <button onclick="rollHoardTreasure('11-16')">CR 11-16</button>
+        <button onclick="rollHoardTreasure('17+')">CR 17+</button>
+      </div>    
+    </div>
+  </div> 
+<button id="vendor-roller-button" onclick="toggleVendorButtons()">VENDORS</button>
+<div id="vendor-button-container" style="display: none;">
+  <div id="vendor-buttons-container">
+<button onclick="toggleVendorContainer('gs-vendor-roll-container')">-----General Store-----</button>
+<div id="gs-vendor-roll-container" class="vendor-container" style="display: none;">
+  <button onclick="rollGSVendorInventory('Wretched')">Wretched General Store</button>
+  <button onclick="rollGSVendorInventory('Poor')">Poor General Store</button>
+  <button onclick="rollGSVendorInventory('Modest')">Modest General Store</button>
+  <button onclick="rollGSVendorInventory('Comfortable')">Comfortable General Store</button>
+  <button onclick="rollGSVendorInventory('Rich')">Rich General Store</button>
+</div>
+
+<button onclick="toggleVendorContainer('Apothicary-vendor-roll-container')">-----Apothicary-----</button>
+<div id="Apothicary-vendor-roll-container" class="vendor-container" style="display: none;">
+  <button onclick="rollApothicaryVendorInventory('Wretched')">Wretched Apothicary</button>
+  <button onclick="rollApothicaryVendorInventory('Poor')">Poor Apothicary</button>
+  <button onclick="rollApothicaryVendorInventory('Modest')">Modest Apothicary</button>
+  <button onclick="rollApothicaryVendorInventory('Comfortable')">Comfortable Apothicary</button>
+  <button onclick="rollApothicaryVendorInventory('Rich')">Rich Apothicary</button>
+</div>
+
+<button onclick="toggleVendorContainer('Weapons-and-armor-vendor-roll-container')">-----Weapons and Armor-----</button>
+<div id="Weapons-and-armor-vendor-roll-container" class="vendor-container" style="display: none;">
+  <button onclick="rollWeaponsAndArmorVendorInventory('Wretched')">Wretched W & A Shop</button>
+  <button onclick="rollWeaponsAndArmorVendorInventory('Poor')">Poor W & A Shop</button>
+  <button onclick="rollWeaponsAndArmorVendorInventory('Modest')">Modest W & A Shop</button>
+  <button onclick="rollWeaponsAndArmorVendorInventory('Comfortable')">Comfortable W & A Shop</button>
+  <button onclick="rollWeaponsAndArmorVendorInventory('Rich')">Rich W & A Shop</button>
+</div>
+
+<button onclick="toggleVendorContainer('black-market-roll-container')">-----Black Market-----</button>
+<div id="black-market-roll-container" class="vendor-container" style="display: none;">
+  <button onclick="rollBlackMarketVendorInventory('Random')">Random Black Market</button>
+  <button onclick="rollBlackMarketVendorInventory('Poor')">Poor Black Market</button>
+  <button onclick="rollBlackMarketVendorInventory('Modest')">Modest Black Market</button>
+  <button onclick="rollBlackMarketVendorInventory('Comfortable')">Comfortable Black Market</button>
+  <button onclick="rollBlackMarketVendorInventory('Rich')">Rich Black Market</button>
+</div>
+
+<script src="module.js"></script>
+<script>
+
+let messageContent = '';
+
+let GMOnlyDisabled = false;
+
+function toggleLootRollerButtons() {
+  if (!GMOnlyDisabled && !game.user.isGM) return;
+  const container = document.getElementById('primary-button-container');
+  if (container.style.display === 'none') {
+    // show the container
+    container.style.display = 'block';
+  } else {
+    // hide the container
+    container.style.display = 'none';
+  }
+}
+
+function hideRollContainers() {
+  document.getElementById("individual-roll-container").style.display = "none";
+  document.getElementById("hoard-roll-container").style.display = "none";
+}
+
+function toggleButtons() {
+  const container = document.getElementById("button-container");
+  container.style.display = container.style.display === "none" ? "block" : "none";
+
+  if (container.style.display === "block") {
+    hideRollContainers();
+  }
+}
+    
+
+    function toggleSFConfig() {
+      if (!GMOnlyDisabled && !game.user.isGM) return;
+      const configContainer = document.getElementById('sf-config-container');
+      if (configContainer.style.display === 'none') {
+        configContainer.style.display = 'block';
+      } else {
+        configContainer.style.display = 'none';
+      }
+    }
+
+function showIndividualButtons() {
+  hideRollContainers();
+  document.getElementById("individual-roll-container").style.display = "block";
+}
+
+function showHoardButtons() {
+  hideRollContainers();
+  document.getElementById("hoard-roll-container").style.display = "block";
+}
+      function rollIndividualTreasure(crRange) {
+        const treasure = [];
+        switch (crRange) {
+          case "0-4":
+            treasure.push(individualTreasureCR0to4());
+            break;
+          case "5-10":
+            treasure.push(individualTreasureCR5to10());
+            break;
+          case "11-16":
+            treasure.push(individualTreasureCR11to16());
+            break;
+          case "17+":
+            treasure.push(individualTreasureCR17Plus());
+            break;
+          default:
+            break;
+        }
+      const messageContent = treasure + "<br>";      
+      ChatMessage.create({ content: final });      
+    }
+
+function rollHoardTreasure(crRange) {
+  let hoard;
+  switch (crRange) {
+    case "0-4":
+      if (!toggleTashas) {
+        hoard = treasureHoardCR0to4();
+      } else {
+        hoard = tashasMITreasureHoardCR0to4();
+      }
+      break;
+    case "5-10":
+      if (!toggleTashas) {
+        hoard = treasureHoardCR5to10();
+      } else {
+        hoard = tashasMITreasureHoardCR5to10();
+      }
+      break;
+    case "11-16":
+      if (!toggleTashas) {
+        hoard = treasureHoardCR11to16();
+      } else {
+        hoard = tashasMITreasureHoardCR11to16();
+      }
+      break;
+    case "17+":
+      if (!toggleTashas) {
+        hoard = treasureHoardCR17toPlus();
+      } else {
+        hoard = tashasMITreasureHoardCR17toPlus();
+      }
+      break;
+    default:
+      break;
+  }
+  const messageContent = generateHoardTreasure(hoard, crRange);
+        ChatMessage.create({ content: messageContent });
+}
+
+let toggleTashas = false;
+
+function updateToggleTashas() {
+  toggleTashas = !toggleTashas;
+
+  console.log(`Tasha's toggle is ${toggleTashas}`);
+}
+
+function toggleVendorButtons() {
+  if (!GMOnlyDisabled && !game.user.isGM) return; {
+          const container = document.getElementById("vendor-button-container");
+          if (container.style.display === "none") {
+            container.style.display = "block";
+          } else {
+            container.style.display = "none";
+          }
+        }
+      }
+
+
+function toggleVendorContainer(containerId) {
+  var container = document.getElementById(containerId);
+  var containers = document.getElementsByClassName("vendor-container");
+  for (var i = 0; i < containers.length; i++) {
+    if (containers[i] === container) {
+      // Toggle the display of the clicked container
+      container.style.display = (container.style.display === "none") ? "block" : "none";
+    } else {
+      // Hide all other containers
+      containers[i].style.display = "none";
+    }
+  }
+}
+
+function showGSVendorButtons() {
+  if (!GMOnlyDisabled && !game.user.isGM) return; {
+    const rollContainer = document.getElementById("gs-vendor-roll-container");
+    rollContainer.style.display = rollContainer.style.display === "none" ? "block" : "none";
+  }
+}    
+function toggleVendorGSButtons() {
+  if (!GMOnlyDisabled && !game.user.isGM) return; {
+    const container = document.getElementById("vendor-GS-buttons-container");
+    if (container.style.display === "none") {
+        container.style.display = "block";
+        } else {
+        container.style.display = "none";
+        }
+  }
+}
+function rollGSVendorInventory(wealthRange) {
+  let GSInventory;
+    switch (wealthRange) {
+    case "Wretched":
+      GSInventory = gsvendorInventoryWretched();
+      break;
+    case "Poor":
+      GSInventory = gsvendorInventoryPoor();
+      break;
+    case "Modest":
+      GSInventory = gsvendorInventoryModest();
+      break;
+    case "Comfortable":
+      GSInventory = gsvendorInventoryComfortable();
+      break;
+    case "Rich":
+      GSInventory = gsvendorInventoryRich();
+      break;
+    default:
+      break;
+  }
+  const messageContent = generateGSVendorInventory(wealthRange, GSInventory);
+  ChatMessage.create({ content: messageContent });
+}
+function showWeaponsAndArmorVendorButtons() {
+  if (!GMOnlyDisabled && !game.user.isGM) return; {
+    const rollContainer = document.getElementById("Weapons-and-armor-vendor-roll-container");
+    rollContainer.style.display = rollContainer.style.display === "none" ? "block" : "none";
+  }
+}  
+function toggleWeaponsAndArmorVendorButtons() {
+  if (!GMOnlyDisabled && !game.user.isGM) return; {
+    const container = document.getElementById("Weapons-and-Armor-buttons-container");
+    if (container.style.display === "none") {
+      container.style.display = "block";
+      } else {
+      container.style.display = "none";
+      }
+  }
+} 
+
+function rollWeaponsAndArmorVendorInventory(wealthRange) {
+       let waInventory;
+        switch (wealthRange) {
+          case "Wretched":
+          waInventory = WeaponsAndArmorVendorInventoryWretched();
+            break;
+          case "Poor":
+          waInventory = WeaponsAndArmorVendorInventoryPoor();
+            break;
+          case "Modest":
+          waInventory = WeaponsAndArmorVendorInventoryModest();
+            break;
+          case "Comfortable":
+          waInventory = WeaponsAndArmorVendorInventoryComfortable();
+            break;
+          case "Rich":
+          waInventory = WeaponsAndArmorVendorInventoryRich();
+            break;
+          case "Wealthy":
+          waInventory = WeaponsAndArmorVendorInventoryWealthy();
+            break;
+          default:
+            break;
+        }
+        const messageContent = generateWeaponsAndArmorVendorInventory(wealthRange, waInventory);
+        ChatMessage.create({ content: messageContent });
+      }
+
+function showApothicaryVendorButtons() {
+  if (!GMOnlyDisabled && !game.user.isGM) return; {
+    const rollContainer = document.getElementById("Apothicary-vendor-roll-container");
+    rollContainer.style.display = rollContainer.style.display === "none" ? "block" : "none";
+  }
+}
+function toggleVendorApothicaryButtons() {
+  if (!GMOnlyDisabled && !game.user.isGM) return; {
+    const container = document.getElementById("vendor-Apothicary-buttons-container");
+    if (container.style.display === "none") {
+      container.style.display = "block";
+      } else {
+      container.style.display = "none";
+      }
+  }
+}
+function rollApothicaryVendorInventory(wealthRange) {
+  let ApothicaryInventory;
+        switch (wealthRange) {
+          case "Wretched":
+            ApothicaryInventory = ApothicaryvendorInventoryWretched();
+            break;
+          case "Poor":
+            ApothicaryInventory = ApothicaryvendorInventoryPoor();
+            break;
+          case "Modest":
+            ApothicaryInventory = ApothicaryvendorInventoryModest();
+            break;
+          case "Comfortable":
+            ApothicaryInventory = ApothicaryvendorInventoryComfortable();
+            break;
+          case "Rich":
+            ApothicaryInventory = ApothicaryvendorInventoryRich();
+            break;
+          case "Wealthy":
+            ApothicaryInventory = ApothicaryvendorInventoryWealthy();
+            break;
+          default:
+            break;
+        }
+        const messageContent = generateApothicaryVendorInventory(wealthRange, ApothicaryInventory);
+        ChatMessage.create({ content: messageContent });
+      }
+
+function generateApothicaryVendorInventory(wealthRange, items = []) {
+  const ApothicaryInventory = [];
+  let totalAmount = 0; 
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    if (typeof item.item === "function") {
+      const { item: subResultItem } = item.item();
+      if (Array.isArray(subResultItem)) {
+        const [minIndex, maxIndex] = subResultItem[""];
+        const itemDescriptions = subResultItem.slice(1);
+        const selectedIndex = Math.floor(
+          Math.random() * (maxIndex - minIndex + 1) + minIndex
+        );
+        const itemDescription = itemDescriptions[selectedIndex - 1];
+        ApothicaryInventory.push(itemDescription); 
+        totalAmount++; 
+      } else {
+        const itemDescription = subResultItem;
+        ApothicaryInventory.push(itemDescription); 
+        totalAmount++; 
+      }
+    }
+  }
+  const messageContent = `Inventory (${wealthRange}):<br>${ApothicaryInventory.join("<br>")}<br>Total items: ${totalAmount}`;
+
+  return messageContent;
+}
+function showBlackMarketVendorButtons() {
+  if (!GMOnlyDisabled && !game.user.isGM) return; {
+    const rollContainer = document.getElementById("black-market-roll-container");
+    rollContainer.style.display = rollContainer.style.display === "none" ? "block" : "none";
+  }
+}
+function toggleBlackMarketButtons() {
+  if (!GMOnlyDisabled && !game.user.isGM) return; {
+    const container = document.getElementById("black-market-buttons-container");
+    if (container.style.display === "none") {
+      container.style.display = "block";
+      } else {
+      container.style.display = "none";
+      }
+  }
+}
+function rollBMVendorInventory(wealthRange) {
+  let bmInventory;
+        switch (wealthRange) {
+          case "Wretched":
+            bmInventory = bMvendorInventoryWretched();
+            break;
+          case "Poor":
+            bmInventory = bMvendorInventoryPoor();
+            break;
+          case "Modest":
+            bmInventory = bMvendorInventoryModest();
+            break;
+          case "Comfortable":
+            bmInventory = bMvendorInventoryComfortable();
+            break;
+          case "Rich":
+            bmInventory = bMvendorInventoryRich();
+            break;
+          case "Wealthy":
+            bmInventory = bMvendorInventoryWealthy();
+            break;
+          default:
+            break;
+        }
+        const messageContent = generateBMvendorInventoryInventory(wealthRange, FnVSInventory);
+        ChatMessage.create({ content: messageContent });
+      }
+function showDMSVendorButtons() {
+  if (!GMOnlyDisabled && !game.user.isGM) return;
+    const rollContainer = document.getElementById("dms-vendor-roll-container");
+    rollContainer.style.display = rollContainer.style.display === "none" ? "block" : "none";
+  }
+
+function toggleVendorDMSButtons() {
+  if (!GMOnlyDisabled && !game.user.isGM) return;
+    const container = document.getElementById("vendor-DMS-buttons-container");
+    if (container.style.display === "none") {
+      container.style.display = "block";
+      } else {
+      container.style.display = "none";
+      }
+}
+function rollDMSVendorInventory(wealthRange) {
+  let DMSInventory;
+        switch (wealthRange) {
+          case "Wretched":
+            DMSInventory = dmsvendorInventoryWretched();
+            break;
+          case "Poor":
+            DMSInventory = dmsvendorInventoryPoor();
+            break;
+          case "Modest":
+            DMSInventory = dmsvendorInventoryModest();
+            break;
+          case "Comfortable":
+            DMSInventory = dmsvendorInventoryComfortable();
+            break;
+          case "Rich":
+            DMSInventory = dmsvendorInventoryRich();
+            break;
+          case "Wealthy":
+            DMSInventory = dmsvendorInventoryWealthy();
+            break;
+          default:
+            break;
+        }
+        const messageContent = generateDMSVendorInventory(wealthRange, DMSInventory);
+        ChatMessage.create({ content: messageContent });
+      }
+
+      var vendorButtonsContainer = document.getElementById("vendor-buttons-container");
+      
+      // Initialize position variables
+      var pos1 = 0,
+          pos2 = 0,
+          pos3 = 0,
+          pos4 = 0;
+      
+      // Attach the drag event listener to the vendor buttons container
+      vendorButtonsContainer.onmousedown = dragMouseDown;
+      
+      function dragMouseDown(e) {
+        e.preventDefault();
+        // Get the mouse cursor position at startup
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        // Call a function whenever the cursor moves
+        document.onmousemove = elementDrag;
+      }
+      
+      function elementDrag(e) {
+        e.preventDefault();
+        // Calculate the new cursor position
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        // Set the vendor buttons container's new position
+        vendorButtonsContainer.style.top = (vendorButtonsContainer.offsetTop - pos2) + "px";
+        vendorButtonsContainer.style.left = (vendorButtonsContainer.offsetLeft - pos1) + "px";
+      }
+      
+      function closeDragElement() {
+        // Stop moving when mouse button is released
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+      
+    </script>
+  </body>
+</html>
