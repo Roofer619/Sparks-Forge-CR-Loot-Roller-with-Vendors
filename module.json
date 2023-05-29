@@ -13,7 +13,7 @@
       }
     ]
   },
-  "version": "0.3.7",
+  "version": "0.3.9",
   "compatibility": {
     "minimum": "10",
     "verified": "10.291",
@@ -37,14 +37,14 @@
   ],
   "ui": {
     "template": [
-      "modules/Sparks-Forge-CR-Loot-Roller-with-Vendors-Beta/templates/Sparks-Forge-CR-Loot-Roller-TB.html"
+      "modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html"
     ],
     "languages": [
       "module/lang/en.json"
     ]
   },
-  "manifest": "https://raw.githubusercontent.com/Roofer619/Sparks-Forge-CR-Loot-Roller-with-Vendors-Beta/master/module.json",    
-  "download": "https://github.com/Roofer619/Sparks-Forge-CR-Loot-Roller-with-Vendors-Beta/archive/master.zip",
+  "manifest": "https://raw.githubusercontent.com/Roofer619/Sparks-Forge-CR-Loot-Roller-with-Vendors/master/module.json",    
+  "download": "https://github.com/Roofer619/Sparks-Forge-CR-Loot-Roller-with-Vendors/archive/master.zip",
   "license": "MIT",
   "keywords": ["dice", "roller", "loot", "vendors", "generator"],
   "authorUrl": "https://github.com/Roofer619",
