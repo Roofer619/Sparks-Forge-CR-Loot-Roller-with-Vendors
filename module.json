@@ -37,7 +37,7 @@
   ],
   "ui": {
     "template": [
-      "modules/Sparks-Forge-CR-Loot-Roller-with-Vendors-Beta/templates/Sparks-Forge-CR-Loot-Roller-TB.html"
+      "modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html"
     ],
     "languages": [
       "module/lang/en.json"
