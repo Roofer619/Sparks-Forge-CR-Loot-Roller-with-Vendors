@@ -19,15 +19,14 @@
     "verified": "11.299",
     "maximum": "11"
   },
-"settings": [
-  {
-    "name": "enableTashas",
-    "default": false,
-    "type": "checkbox",
-    "scope": "world",
-    "config": true,
-    "hint": "Enable Tasha's"
-  }
+  "packs": [
+    {
+        "name": "Sparks Forge Items",
+        "label": "Items",
+        "system": "dnd5e",
+        "type": "Item",
+        "path": "packs/sflr-items.db" 
+    }
 ],
   "scripts": [
     "/scripts/module.js"
@@ -48,13 +47,5 @@
   "license": "MIT",
   "keywords": ["dice", "roller", "loot", "vendors", "generator"],
   "authorUrl": "https://github.com/Roofer619",
-  "packs": [
-    {
-        "name": "Sparks Forge Items",
-        "label": "Items",
-        "system": "dnd5e",
-        "type": "Item",
-        "path": "packs/sflr-items.db" 
-    }
-]
+
 }
