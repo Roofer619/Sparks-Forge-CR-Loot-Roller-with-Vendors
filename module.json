@@ -50,7 +50,7 @@
       "modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html"
     ]
   },
-  "manifest": "https://raw.githubusercontent.com/Roofer619/Sparks-Forge-CR-Loot-Roller-with-Vendors/master/module.json",    
+  "manifest": "https://raw.githubusercontent.com/Roofer619/Sparks-Forge-CR-Loot-Roller-with-Vendors/main/module.json",    
   "download": "https://github.com/Roofer619/Sparks-Forge-CR-Loot-Roller-with-Vendors/archive/master.zip",
   "license": "modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/LICENSE.pdf",
   "keywords": ["dice", "roller", "loot", "vendors", "generator"],
