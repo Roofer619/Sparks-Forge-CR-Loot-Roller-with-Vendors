@@ -1,15 +1,9 @@
 {
   "name": "Sparks-Forge-CR-Loot-Roller-with-Vendors",
   "title": "Sparks-Forge-CR-Loot-Roller-with-Vendors",
-  "description": "Light load module that allows for generating Individual and Hoard loot rolls for D&D 5E. Stable Version 1.0",
-  "authors": [
-    {
-      "name": "William Watkins (Roofer619)",
-      "email": "sparksforgeentertainment@gmail.com",
-      "discord": "https://discord.gg/mc2Hagxy",
-      "flags": {}
-    }
-  ],
+  "description": "Light load module that allows for generating Individual and Hoard loot rolls 5E.",
+  "author": "William Watkins (Roofer619)",
+  "authors": [{ "name": "William Watkins (Roofer619)" }],
   "relationships": {
     "systems": [
       {
@@ -17,28 +11,24 @@
         "type": "system",
         "compatibility": {}
       }
-    ],
-    "packs": [
-      {
-        "name": "Sparks Forge Items",
-        "label": "Items",
-        "system": "dnd5e",
-        "type": "Item",
-        "path": "packs/sflr-items.db", 
-        "ownership": {
-          "PLAYER": "OBSERVER",
-          "ASSISTANT": "OWNER"
-        },
-        "flags": {}
-      }
     ]
   },
-  "version": "0.3.93",
+  "version": "0.3.7",
   "compatibility": {
     "minimum": "10",
-    "verified": "11.299",
-    "maximum": "11"
+    "verified": "10.291",
+    "maximum": "10"
   },
+"settings": [
+  {
+    "name": "enableTashas",
+    "default": false,
+    "type": "checkbox",
+    "scope": "world",
+    "config": true,
+    "hint": "Enable Tasha's"
+  }
+],
   "scripts": [
     "/scripts/module.js"
   ],
@@ -55,7 +45,16 @@
   },
   "manifest": "https://raw.githubusercontent.com/Roofer619/Sparks-Forge-CR-Loot-Roller-with-Vendors/master/module.json",    
   "download": "https://github.com/Roofer619/Sparks-Forge-CR-Loot-Roller-with-Vendors/archive/master.zip",
-  "license": "OGL v.1.0",
+  "license": "MIT",
   "keywords": ["dice", "roller", "loot", "vendors", "generator"],
   "authorUrl": "https://github.com/Roofer619",
+  "packs": [
+    {
+        "name": "Sparks Forge Items",
+        "label": "Items",
+        "system": "dnd5e",
+        "type": "Item",
+        "path": "packs/sflr-items.db" 
+    }
+]
 }
