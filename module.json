@@ -48,9 +48,6 @@
   "ui": {
     "template": [
       "modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html"
-    ],
-    "languages": [
-      "module/lang/en.json"
     ]
   },
   "manifest": "https://raw.githubusercontent.com/Roofer619/Sparks-Forge-CR-Loot-Roller-with-Vendors/master/module.json",    
