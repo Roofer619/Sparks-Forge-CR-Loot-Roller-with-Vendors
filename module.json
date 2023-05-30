@@ -1,10 +1,10 @@
 {
-  "name": "Sparks-Forge-CR-Loot-Roller-with-Vendors",
+  "id": "Sparks-Forge-CR-Loot-Roller-with-Vendors",
   "title": "Sparks-Forge-CR-Loot-Roller-with-Vendors",
   "description": "Light load module that allows for generating Individual and Hoard loot rolls for D&D 5E. Stable Version 1.0",
   "authors": [
     {
-      "name": "William Watkins (Roofer619)",
+      "id": "William Watkins (Roofer619)",
       "email": "sparksforgeentertainment@gmail.com",
       "discord": "https://discord.gg/mc2Hagxy",
       "flags": {}
@@ -20,7 +20,7 @@
     ],
     "packs": [
       {
-        "name": "Sparks Forge Items",
+        "ide": "Sparks Forge Items",
         "label": "Items",
         "system": "dnd5e",
         "type": "Item",
