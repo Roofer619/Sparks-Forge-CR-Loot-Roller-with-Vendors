@@ -4,17 +4,491 @@ console.log("SF CR Loot Roller is loading");
 let messageContent = '';
 
 Hooks.once('init', () => {
-  game.settings.register("sparks-forge-cr-loot-roller-with-vendors", "enableTashas", {
-    name: "Enable Tasha's",
-    hint: "Enables Tasha's Cauldron of Everything to appear in CR Loot rolls, when checked. Requires GM browser reload to disable.",
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableFirearms", {
+    description: "Enable Firearms",
+    name: "Enable Firearms",
+    hint: "Enables Firearms. Requires GM (f5) reload to disable. Beta in progress.",
     scope: "world",
     config: true,
     default: false,
     type: Boolean
   });
 
-  const tashasSetting = game.settings.get("sparks-forge-cr-loot-roller-with-vendors", "enableTashas");
+  const firearmsSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableFirearms");
+  toggleFirearms = firearmsSetting;
+});
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableLaserWeapons", {
+    description: "Enable Laser Weapons",
+    name: "Enable Laser Weapons",
+    hint: "Enables Laser Weapons. Requires GM (f5) reload to disable. Beta in progress. Concludes 30.06.2023",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean
+  });
+
+  const laserWeaponsSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableLaserWeapons");
+  togglelaserweapons = laserWeaponsSetting;
+});
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "banDecks", {
+    description: "Enable Laser Weapons",
+    name: "Ban Decks",
+    hint: "Bans Deck of Illusions and Deck of Many Things. Requires GM (f5) reload to disable. Beta in progress. Concludes 30.06.2023",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean
+  });
+
+  const decksSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "banDecks");
+  toggleDecks = decksSetting;
+});
+
+let toggleTashas = false;
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableTashas", {
+    description: "Enable Tasha's Cauldron of Everything Content",
+    name: "Tasha's Cauldron of Everything",
+    hint: "Enables Tasha's Cauldron of Everything to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Beta in progress. Concludes 30.06.2023",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: value => {
+      toggleTashas = value;
+      console.log(`Tasha's Cauldron of Everything toggle is ${toggleTashas}`);
+      ChatMessage.create({ content: `Tasha's Cauldron of Everything toggle is ${toggleTashas}`, speaker: ChatMessage.getSpeaker() });
+    }
+  });
+
+  const tashasSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableTashas");
   toggleTashas = tashasSetting;
+});
+
+let toggleXanathars = false;
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableXanathars", {
+    description: "Enable Xanathar's Guide to Everything Content",
+    name: "Xanathar's Guide to Everything",
+    hint: "Enables Xanathar's Guide to Everything Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: value => {
+      toggleXanathars = value;
+      console.log(`Xanathar's Guide to Everything toggle is ${toggleXanathars}`);
+      ChatMessage.create({ content: `Xanathar's Guide to Everything toggle is ${toggleXanathars}`, speaker: ChatMessage.getSpeaker() });
+    }
+  });
+
+  const xanatharsSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableXanathars");
+  toggleXanathars = xanatharsSetting;
+});
+
+let toggleEberron = false;
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableEberron", {
+    description: "Enable Eberron The Last War Content",
+    name: "Eberron The Last War",
+    hint: "Enables Eberron Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: value => {
+      toggleEberron = value;
+      console.log(`Eberron The Last War toggle is ${toggleEberron}`);
+      ChatMessage.create({ content: `Eberron The Last War toggle is ${toggleEberron}`, speaker: ChatMessage.getSpeaker() });
+    }
+  });
+
+  const eberronSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableEberron");
+  toggleEberron = eberronSetting;
+});
+
+let toggleGuildmasters = false;
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableGuildmastersGtR", {
+    description: "Enable Guildmasters' Guide to Ravnica Content",
+    name: "Guildmasters' Guide to Ravnica",
+    hint: "Enables Guildmasters' Guide to Ravnica Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: value => {
+      toggleGuildmasters = value;
+      console.log(`Guildmaster' Guide to Ravnica toggle is ${toggleGuildmasters}`);
+      ChatMessage.create({ content: `Guildmaster' Guide to Ravnica toggle is ${toggleGuildmasters}`, speaker: ChatMessage.getSpeaker() });
+    }
+  });
+
+  const guildmastersSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableGuildmastersGtR");
+  toggleGuildmasters = guildmastersSetting;
+});
+
+let toggleAcquisitions = false;
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableAcquisitionsIncorporated", {
+    description: "Enable Acquisitions Incorporated Content",
+    name: "Acquisitions Incorporated",
+    hint: "Enables Acquisitions Incorporated Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: value => {
+      toggleAcquisitions = value;
+      console.log(`Acquisitions Incorporated toggle is ${toggleAcquisitions}`);
+      ChatMessage.create({ content: `Acquisitions Incorporated toggle is ${toggleAcquisitions}`, speaker: ChatMessage.getSpeaker() });
+    }
+  });
+
+  const acquisitionsSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableAcquisitionsIncorporated");
+  toggleAcquisitions = acquisitionsSetting;
+});
+
+let toggleTheros = false;
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableTheros", {
+    description: "Enable Mythic Odysseys of Theros Content",
+    name: "Mythic Odysseys of Theros",
+    hint: "Enables Mythic Odysseys of Theros Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: value => {
+      toggleTheros = value;
+      console.log(`Mythic Odysseys of Theros toggle is ${toggleTheros}`);
+      ChatMessage.create({ content: `Mythic Odysseys of Theros toggle is ${toggleTheros}`, speaker: ChatMessage.getSpeaker() });
+    }
+  });
+
+  const therosSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableTheros");
+  toggleTheros = therosSetting;
+});
+
+let toggleFizbans = false;
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableFizbans", {
+    description: "Enable Fizbans Treasury of Dragons Content",
+    name: "Fizbans Treasury of Dragons",
+    hint: "Enables Fizbans Treasury of Dragons Hoard Related Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: value => {
+      toggleTheros = value;
+      console.log(`Fizbans Treasury of Dragons toggle is ${toggleFizbans}`);
+      ChatMessage.create({ content: `Fizbans Treasury of Dragons toggle is ${toggleFizbans}`, speaker: ChatMessage.getSpeaker() });
+    }
+  });
+
+  const fizbansSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableFizbans");
+  toggleFizbans = fizbansSetting;
+});
+
+let toggleStrixhaven = false;
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableStrixhaven", {
+    description: "Enable Strixhaven: A Curriculum of Chaos Content",
+    name: "Strixhaven: A Curriculum of Chaos",
+    hint: "Enables Strixhaven: A Curriculum of Chaos Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: value => {
+      toggleTheros = value;
+      console.log(`Strixhaven: A Curriculum of Chaos toggle is ${toggleStrixhaven}`);
+      ChatMessage.create({ content: `Strixhaven: A Curriculum of Chaos toggle is ${toggleStrixhaven}`, speaker: ChatMessage.getSpeaker() });
+    }
+  });
+
+  const strixhavenSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableStrixhaven");
+  toggleStrixhaven = strixhavenSetting;
+});
+
+let toggleSpellJammer = false;
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableSpellJammer", {
+    description: "Enable Spelljammer: Adventures in Space Content",
+    name: "Spelljammer: Adventures in Space",
+    hint: "Enables Spelljammer: Adventures in Space Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: value => {
+      toggleTheros = value;
+      console.log(`SSpelljammer: Adventures in Space toggle is ${toggleSpellJammer}`);
+      ChatMessage.create({ content: `Spelljammer: Adventures in Space toggle is ${toggleSpellJammer}`, speaker: ChatMessage.getSpeaker() });
+    }
+  });
+
+  const spellJammerSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendor", "enableSpellJammer");
+  toggleSpellJammer = spellJammerSetting;
+});
+
+let toggleApocalypse = false;
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enablePrincesoftheApocalypse", {
+    description: "Enable Princes of the Apocalypse Content",
+    name: "Princes of the Apocalypse",
+    hint: "Enables Princes of the Apocalypse Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: value => {
+      toggleTheros = value;
+      console.log(`Princes of the Apocalypse toggle is ${toggleApocalypse}`);
+      ChatMessage.create({ content: `Princes of the Apocalypse toggle is ${toggleApocalypse}`, speaker: ChatMessage.getSpeaker() });
+    }
+  });
+
+  const apocalypseSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enablePrincesoftheApocalypse");
+  toggleApocalypse = apocalypseSetting;
+});
+
+let toggleAbyss = false;
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableOutoftheAbyss", {
+    description: "Enable Out of the Abyss Content",
+    name: "Out of the Abyss",
+    hint: "Enables Out of the Abyss Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: value => {
+      toggleTheros = value;
+      console.log(`Out of the Abyss toggle is ${toggleAbyss}`);
+      ChatMessage.create({ content: `Out of the Abyss toggle is ${toggleAbyss}`, speaker: ChatMessage.getSpeaker() });
+    }
+  });
+
+  const abyssSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableOutoftheAbyss");
+  toggleAbyss = abyssSetting;
+});
+
+let toggleThunder = false;
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableStormKingsThunder", {
+    description: "Enable Storm Kings Thunder Content",
+    name: "Storm Kings Thunder",
+    hint: "Enables Storm Kings Thunder Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: value => {
+      toggleTheros = value;
+      console.log(`Storm Kings Thunder is ${toggleThunder}`);
+      ChatMessage.create({ content: `Storm Kings Thunder is ${toggleThunder}`, speaker: ChatMessage.getSpeaker() });
+    }
+  });
+
+  const thunderSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableStormKingsThunder");
+  toggleThunder = thunderSetting;
+});
+
+let toggleYawningPortal = false;
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableTalesFromTheYawningPortal", {
+    description: "Enable Tales from the Yawning Portal Content",
+    name: "Tales from the Yawning Portal",
+    hint: "Enables Tales from the Yawning Portal Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: value => {
+      toggleTheros = value;
+      console.log(`Tales from the Yawning Portal is ${toggleYawningPortal}`);
+      ChatMessage.create({ content: `Tales from the Yawning Portal is ${toggleYawningPortal}`, speaker: ChatMessage.getSpeaker() });
+    }
+  });
+
+  const yawningPortalSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableTalesFromTheYawningPortal");
+  toggleYawningPortal = yawningPortalSetting;
+});
+
+let toggleAnnihilation = false;
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableTombofAnnihilation", {
+    description: "Enable Tomb of Annihilation Content",
+    name: "Tomb of Annihilation",
+    hint: "Enables Tomb of Annihilation Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: value => {
+      toggleTheros = value;
+      console.log(`Tomb of Annihilation is ${toggleAnnihilation}`);
+      ChatMessage.create({ content: `Tomb of Annihilation is ${toggleAnnihilation}`, speaker: ChatMessage.getSpeaker() });
+    }
+  });
+
+  const annihilationSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableTombofAnnihilation");
+  toggleAnnihilation = annihilationSetting;
+});
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableWaterdeepDragonHeist", {
+    description: "Enable Waterdeep: Dragon Heist Content",
+    name: "Waterdeep: Dragon Heist",
+    hint: "Enables Waterdeep: Dragon Heist Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean
+  });
+
+  const dragonHeistSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableWaterdeepDragonHeist");
+  toggleDragonHeist = dragonHeistSetting;
+});
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableLostLab", {
+    description: "Enable Lost Laboratory of Kwalish Content",
+    name: "Lost Laboratory of Kwalish",
+    hint: "Enables Lost Laboratory of Kwalish Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean
+  });
+
+  const lostLabSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableLostLab");
+  toggleLostLab = lostLabSetting;
+});
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableSaltmarsh", {
+    description: "Enable Ghosts of Saltmarsh Content",
+    name: "Ghosts of Saltmarsh",
+    hint: "Enables Ghosts of Saltmarsh Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean
+  });
+
+  const saltmarshSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableSaltmarsh");
+  toggleSaltmarsh = saltmarshSetting;
+});
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableThessalhydra", {
+    description: "Enable Hunt for the Thessalhydra Content",
+    name: "Hunt for the Thessalhydra",
+    hint: "Enables Hunt for the Thessalhydra Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean
+  });
+
+  const thessalhydraSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableThessalhydra");
+  toggleThessalhydra = thessalhydraSetting;
+});
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableAvernus", {
+    description: "Enable Baldur's Gate: Descent into Avernus Content",
+    name: "Baldur's Gate: Descent into Avernus",
+    hint: "Enables Baldur's Gate: Descent into Avernus Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean
+  });
+
+  const avernusSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableAvernus");
+  toggleAvernus = avernusSetting;
+});
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableInfernalMachineRebuild", {
+    description: "Enable Infernal Machine Rebuild Content",
+    name: "Infernal Machine Rebuild",
+    hint: "Enables Infernal Machine Rebuild Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean
+  });
+
+  const machineRebuildSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableInfernalMachineRebuild");
+  toggleMachineRebuild = machineRebuildSetting;
+});
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableFrostmaiden", {
+    description: "Enable Icewind Dale: Rime of the Frostmaiden Content",
+    name: "Icewind Dale: Rime of the Frostmaiden",
+    hint: "Enables Icewind Dale: Rime of the Frostmaiden Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean
+  });
+
+  const frostmaidenSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableFrostmaiden");
+  toggleFrostmaiden = frostmaidenSetting;
+});
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableWitchlight", {
+    description: "Enable The Wild Beyond the Witchlight Content",
+    name: "The Wild Beyond the Witchlight",
+    hint: "Enables Icewind Dale: Rime of the Frostmaiden into Avernus Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean
+  });
+
+  const witchlightSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableWitchlight");
+  toggleWitchlight = witchlightSetting;
+});
+
+Hooks.once('init', () => {
+  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableDragonlance", {
+    description: "Enable Dragonlance: Shadow of the Dragon Queen Content",
+    name: "Dragonlance: Shadow of the Dragon Queen",
+    hint: "Enables Dragonlance: Shadow of the Dragon Queen Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean
+  });
+
+  const dragonlanceSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableDragonlance");
+  toggleDragonlance = dragonlanceSetting;
 });
 
 Hooks.on("socketlib.ready", () => {
@@ -68,14 +542,6 @@ function toggleSFConfig() {
     // hide the container
     configContainer.style.display = 'none';
   }
-}
-
-let toggleTashas = false;
-
-function updateToggleTashas() {
-  toggleTashas = !toggleTashas;
-
-  console.log(`Tasha's toggle is ${toggleTashas}`);
 }
 
 function rollOnTable(table, numItems = 1) {
@@ -4478,10 +4944,11 @@ const magicItemTableD = [
   }, 
 { range: [21, 30], item: () => {
   const potionofInvisibility = [
-    {uuid: "@UUID[Compendium.Sparks-Forge-CR-Loot-Roller-with-Vendors.Sparks Forge Items.rTn4p9nJr4Aq2GPB]{Potion of Invisibility}",
-    image: "icons/consumables/potions/bottle-bulb-empty-glass.webp",
-    image: "icons/consumables/potions/vial-cork-empty.webp",
-}, 
+  { name: "Potion of Invisibility",
+    uuid: "@UUID[Compendium.Sparks-Forge-CR-Loot-Roller-with-Vendors-Free.Sparks Forge Items.rTn4p9nJr4Aq2GPB]{Potion of Invisibility}",
+    image: "icons/consumables/potions/bottle-bulb-empty-glass.webp"
+  },
+
 ];
 const randomIndex = Math.floor(Math.random() * potionofInvisibility .length);
 return { 
@@ -12076,282 +12543,6 @@ async function showItemsDialog(gpAmount, ppAmount, formattedItemTypes) {
   }).render(true);
 }
 
-async function tashasMITreasureHoardCR17toPlus() {
-  const gpAmount = Math.floor(Math.random(6 , 72) * 1000);
-  const ppAmount = Math.floor(Math.random(8 , 48) * 1000);
-
-  let items = [];
-const secondaryRoll = Math.floor(Math.random() * 100) + 1;
-  switch (true) {
-      case secondaryRoll >= 1 && secondaryRoll <= 2:
-        items = [...items, ...rollItems(1, 2, twofiftygpartobjectsTypesW)];
-        items = [...items, ...rollItems(0, 1, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 3 && secondaryRoll <= 5:
-        items = [...items, ...rollItems(3, 18, onethousandgpgemstonesTypesW)];
-        items = [...items, ...rollItems(1, 6, magicItemTableC)]; 
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 6 && secondaryRoll <= 8:
-        items = [...items, ...rollItems(1, 10, twentyfivegpartobjectsTypesW)];
-        items = [...items, ...rollItems(1, 6, magicItemTableC)]; 
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 9 && secondaryRoll <= 11:
-        items = [...items, ...rollItems(1, 4, seventyfivehundredgpartobjectsTypesW)];
-        items = [...items, ...rollItems(1, 6, magicItemTableC)]; 
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 12 && secondaryRoll <= 14:
-        items = [...items, ...rollItems(1, 8, fivethousandgpgemstonesTypesW)];
-        items = [...items, ...rollItems(1, 6, magicItemTableC)];  
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 15 && secondaryRoll <= 22:
-        items = [...items, ...rollItems(3, 18, onethousandgpgemstonesTypesW)];
-        items = [...items, ...rollItems(1, 6, magicItemTableD)];
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 23 && secondaryRoll <= 30:
-        items = [...items, ...rollItems(1, 10, twentyfivehundredgpartobjectsTypesW)];
-        items = [...items, ...rollItems(1, 6, magicItemTableD)];
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 31 && secondaryRoll <= 38:
-        items = [...items, ...rollItems(1, 4, seventyfivehundredgpartobjectsTypesW)];
-        items = [...items, ...rollItems(1, 6, magicItemTableD)];
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 39 && secondaryRoll <= 46:
-        items = [...items, ...rollItems(1, 8, fivethousandgpgemstonesTypesW)];
-        items = [...items, ...rollItems(1, 6, magicItemTableD)];
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 47 && secondaryRoll <= 52:
-        items = [...items, ...rollItems(3, 18, onethousandgpgemstonesTypesW)];
-        items = [...items, ...rollItems(1, 6, magicItemTableE)];
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 53 && secondaryRoll <= 58:
-        items = [...items, ...rollItems(3, 18, twentyfivehundredgpartobjectsTypesW)];
-        items = [...items, ...rollItems(1, 6, magicItemTableE)];
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 59 && secondaryRoll <= 63:
-        items = [...items, ...rollItems(1, 4, seventyfivehundredgpartobjectsTypesW)];
-        items = [...items, ...rollItems(1, 6, magicItemTableE)];
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 64 && secondaryRoll <= 68:
-        items = [...items, ...rollItems(1, 8, fivethousandgpgemstonesTypesW)];
-        items = [...items, ...rollItems(1, 6, magicItemTableE)];
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 69:
-        items = [...items, ...rollItems(3, 18, onethousandgpgemstonesTypesW)];
-        items = [...items, ...rollItems(1, 4, magicItemTableG)];
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 70:
-        items = [...items, ...rollItems(1, 10, twentyfivehundredgpartobjectsTypesW)];
-        items = [...items, ...rollItems(1, 4, magicItemTableG)];
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 71:
-        items = [...items, ...rollItems(1, 4, seventyfivehundredgpartobjectsTypesW)];
-        items = [...items, ...rollItems(1, 4, magicItemTableG)];
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 72:
-        items = [...items, ...rollItems(1, 8, fivethousandgpgemstonesTypesW)];
-        items = [...items, ...rollItems(1, 4, magicItemTableG)];
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 73 && secondaryRoll <= 74:
-        items = [...items, ...rollItems(3, 18, onethousandgpgemstonesTypesW)];
-        items = [...items, ...rollItems(1, 4, magicItemTableH)];
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 75 && secondaryRoll <= 76:
-        items = [...items, ...rollItems(1, 10, twentyfivegpartobjectsTypesW)];
-        items = [...items, ...rollItems(1, 4, magicItemTableH)];
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 77 && secondaryRoll <= 78:
-        items = [...items, ...rollItems(1, 4, seventyfivehundredgpartobjectsTypesW)];
-        items = [...items, ...rollItems(1, 4, magicItemTableH)];
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 79 && secondaryRoll <= 80:
-        items = [...items, ...rollItems(1, 8, fivethousandgpgemstonesTypesW)];
-        items = [...items, ...rollItems(1, 4, magicItemTableH)];
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 81 && secondaryRoll <= 85:
-        items = [...items, ...rollItems(3, 18, onethousandgpgemstonesTypesW)];
-        items = [...items, ...rollItems(1, 4, magicItemTableI)];
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 86 && secondaryRoll <= 90:
-        items = [...items, ...rollItems(1, 10, twentyfivegpartobjectsTypesW)];
-        items = [...items, ...rollItems(1, 4, magicItemTableI)];
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 91 && secondaryRoll <= 95:
-        items = [...items, ...rollItems(1, 4, seventyfivehundredgpartobjectsTypesW)];
-        items = [...items, ...rollItems(1, 4, magicItemTableI)];
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      case secondaryRoll >= 96 && secondaryRoll <= 100:
-        items = [...items, ...rollItems(1, 8, fivethousandgpgemstonesTypesW)];
-        items = [...items, ...rollItems(1, 4, magicItemTableI)];
-        items = [...items, ...rollItems(0, 2, tashasMITrareplus)];
-        break;
-      default:
-        break;
-      }
-
-    const subResults = items.map((item) => {
-      if (typeof item.item === "function") {
-        const { roll, item: subResultItem } = item.item();
-        const name = subResultItem?.name;
-        const uuid = subResultItem?.uuid;
-        const image = subResultItem?.image;
-        if (Array.isArray(subResultItem)) {
-          const [minIndex, maxIndex] = subResultItem[""];
-          const itemDescriptions = subResultItem.slice(1);
-          const selectedIndex = Math.floor(Math.random() * (maxIndex - minIndex + 1) + minIndex);
-          return {
-            roll,
-            description: itemDescriptions[selectedIndex - 1],
-            name: item.name ? item.name : 'N/A',
-            uuid: item.uuid ? item.uuid : 'N/A',
-            image: item.image ? item.image : 'N/A',
-          };
-        } else {
-          return {
-            roll,
-            description: subResultItem,
-            name: name ? name : 'N/A',
-            uuid: uuid ? uuid : 'N/A',
-            image: image ? image : 'N/A',
-          };
-        }
-      } else {
-        const { description, name, uuid, image } = item;
-        return {
-          description,
-          name: name ? name : 'N/A',
-          uuid: uuid ? uuid : 'N/A',
-          image: image ? image : 'N/A',
-        };
-      }
-    });
-    
-const formattedItems = subResults.map(subResult => {
-  const { roll, name, uuid, image } = subResult;
-  const imgTag = image ? `<img src="${image}" width="35" height="35">` : '';
-  const displayUuid = uuid ? uuid : '';
-  return `<span style="display: flex; align-items: right;"><div style="margin-right: 10px;">${imgTag}</div><div>${displayUuid}${roll ? `: ${roll}` : ""}${!displayUuid ? name : ""}</div></span>`;
-}).join("; ");
-
-const nonSubItems = items.filter(item => typeof item.item !== "function").map(item => {
-  const { uuid, image } = item;
-  const imgTag = image ? `<img src="${image}" width="35" height="35">` : '';
-  const displayName = uuid ? uuid : '';
-  return `<span style="display: flex; align-items: right;"><div style="margin-right: 10px;">${imgTag}</div><div>${displayName}${!displayName ? item.name : ""}</div></span>`;
-});
-
-const messageContent = `Inventory:;${JSON.stringify(
-  items.map(({ uuid, image, name }) => ({
-    uuid,
-    image,
-    name,
-  })),
-  null,
-  2
-   )}<br>${formattedItems}<br>${nonSubItems.join()}`;
-    
-    if (typeof showItemsDialog === 'function') {
-      const itemBox = document.createElement("div");
-      itemBox.style.border = "1px solid black";
-      itemBox.style.padding = "10px";
-      itemBox.style.marginTop = "10px";
-      itemBox.style.textAlign = "right"; 
-      itemBox.innerHTML = messageContent;
-    
-      const buttons = {
-        ok: {
-          label: "OK",
-        },
-      };    
-  new Dialog({
-    title: "CR 17+ Hoard",
-    content: "CR 17+ Hoard journal entry created.",
-    buttons: buttons,
-    default: "ok",
-  }).render(true);
-
-  const now = new Date();
-  const year = now.getFullYear().toString().substring(2);
-  const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}
-                    ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}
-                    :${now.getSeconds().toString().padStart(2, '0')}`;
-    
-const journalEntryName = `CR 17+ Hoard (${timeStamp})`;
-await JournalEntry.create({
-  name: journalEntryName,
-  content: `<div style="text-align: right;">${messageContent.replaceAll('"range"', "<br>").replaceAll('",', "<br>")}</div>
-  ..............................................................................................<br>
-  ............>___________________________________<..............<br>
-  ...........>(VVVVVVVVVVVVV..I0I..VVVVVVVVVVVVV)<........<br>
-  ..........>((###########((I#I(*,,17+,,*)I#I))############))<......<br>
-  ............>(^^^^^^^^^^^^^^^^(((##I##)))^^^^^^^^^^^^^^^)<...........<br>
-  ............>(^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^)<............<br>
-  .............>((($*$*$$*$$*$*$$*$*$*$$*$$*$*$$*$*$$))<...........<br>
-  ............>(($*$$$*$$*$*$$*$$$*$$$*$*$$$*$$*$$*$))<..........<br>
-  ..........>((($$*$$*$*$$*$$$*$$*$*$$$$*$*$$*$$*$$$)))<.........<br>
-  '.......>((###############(((((/ \\)))))###############))<.....'<br>
-  .......>(#((*********************((((I))))*********************))#)<......<br>
-  ......>(((((***************************************************)))))<.....<br>
-  .......>(((*****************************************************)))<......<br>
-  ........>(((***************************************************)))<.......<br>
-  .........>((***************************************************))<........<br>
-  ..........>(####################################).........<br>
-  ..............................................................................................<br>
-  ..............................................................................................<br>`,
-  Permission: CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER,
-});
-
-
-if (!game.user.isGM) {
-  await ChatMessage.create({ content: messageContent.replaceAll('"range"', "<br>").replaceAll('" }, {', "<br>") });
-} else {
-  const journalEntry = await game.journal.getName(journalEntryName);
-  if (journalEntry) {
-    journalEntry.update({ "permission.default": CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER });
-    game.socket.emit("createJournalEntry", { journalEntry });
-  }
-}}}
-
-window.addEventListener('load', function() {
-  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
-  const xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      try {
-        const div = document.createElement('div');
-        div.innerHTML = xhr.responseText;
-        document.body.appendChild(div);
-      } catch (e) {
-        console.error(e);
-      }
-    }
-  };
-  xhr.open('GET', path, true);
-  xhr.send();
-});
-
 async function treasureHoardCR17toPlus() {
   const gpAmount = Math.floor(Math.random(6 , 72) * 1000);
   const ppAmount = Math.floor(Math.random(8 , 48) * 1000);
@@ -12576,44 +12767,27 @@ await JournalEntry.create({
   xhr.send();
   })};
   
-async function rollHoardTreasure(crRange) {
-  let hoard;
-  switch (crRange) {
-    case "0-4":
-      if (!toggleTashas) {
+  async function rollHoardTreasure(crRange) {
+    let hoard;
+    switch (crRange) {
+      case "0-4":
         hoard = treasureHoardCR0to4();
-      } else {
-        hoard = tashasMITreasureHoardCR0to4();
-      }
-      break;
-    case "5-10":
-      if (!toggleTashas) {
+        break;
+      case "5-10":
         hoard = treasureHoardCR5to10();
-      } else {
-        hoard = tashasMITreasureHoardCR5to10();
-      }
-      break;
-    case "11-16":
-      if (!toggleTashas) {
+        break;
+      case "11-16":
         hoard = treasureHoardCR11to16();
-      } else {
-        hoard = tashasMITreasureHoardCR11to16();
-      }
-      break;
-    case "17+":
-      if (!toggleTashas) {
+        break;
+      case "17+":
         hoard = treasureHoardCR17toPlus();
-      } else {
-        hoard = tashasMITreasureHoardCR17toPlus();
-      }
-      break;
-    default:
-      break;
-  }
-  const messageContent = generateHoardTreasure(hoard, crRange);
-  await ChatMessage.create({ content: messageContent });
-}
-
+        break;
+      default:
+        break;
+    }
+    const messageContent = generateHoardTreasure(hoard, crRange);
+    await ChatMessage.create({ content: messageContent });
+  }  
     
 function generateHoardTreasure(crRange, items = []) {
   const treasure = [];
@@ -12850,197 +13024,6 @@ xhr.open('GET', path, true);
 xhr.send();
 });
 
-async function tashasMITreasureHoardCR0to4() {
-  const cpAmount = Math.floor(Math.random(6 , 36) * 100);
-  const spAmount = Math.floor(Math.random(3 , 18) * 100);
-  const gpAmount = Math.floor(Math.random(2 , 12) * 10);
-
-  let items = [];
-  const secondaryRoll = roll(1, 100);
-  switch (true) {
-case secondaryRoll >= 1 && secondaryRoll <= 6:
-  items = [...items, ...rollItems(1, 2, tengpgemstonesTypesW)];
-  if (Math.random() < 0.25) {
-    items = [...items, ...rollItems(0, 1, tashasMITuncommonTypes)];
-  }
-  break;
-    case secondaryRoll >= 7 && secondaryRoll <= 16:
-      items = [...items, ...rollItems(2, 12, tengpgemstonesTypesW)];
-      if (Math.random() < 0.25) {
-        items = [...items, ...rollItems(0, 1, tashasMITuncommonTypes)];
-      }
-      break;
-    case secondaryRoll >= 17 && secondaryRoll <= 26:
-      items = [...items, ...rollItems(2, 8, twentyfivegpartobjectsTypesW)];
-      if (Math.random() < 0.25) {
-        items = [...items, ...rollItems(0, 1, tashasMITuncommonTypes)];
-      }
-      break;
-    case secondaryRoll >= 27 && secondaryRoll <= 36:
-      items = [...items, ...rollItems(2, 12, fiftygpgemstoneTypesW)];
-      if (Math.random() < 0.25) {
-        items = [...items, ...rollItems(0, 1, tashasMITuncommonTypes)];
-      }
-      break;
-    case secondaryRoll >= 37 && secondaryRoll <= 44:
-      items = [...items, ...rollItems(2, 12, tengpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 6, magicItemTableA)];
-      if (Math.random() < 0.25) {
-        items = [...items, ...rollItems(0, 1, tashasMITuncommonTypes)];
-      }
-      break;
-    case secondaryRoll >= 45 && secondaryRoll <= 52:
-      items = [...items, ...rollItems(2, 8, twentyfivegpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 6, magicItemTableA)];
-      if (Math.random() < 0.25) {
-        items = [...items, ...rollItems(0, 1, tashasMITuncommonTypes)];
-      }
-      break;
-    case secondaryRoll >= 53 && secondaryRoll <= 60:
-      items = [...items, ...rollItems(2, 12, fiftygpgemstoneTypesW)];
-      items = [...items, ...rollItems(1, 6, magicItemTableA)];
-      if (Math.random() < 0.5) {
-        items = [...items, ...rollItems(0, 1, tashasMITuncommonTypes)];
-      }
-      break;
-    case secondaryRoll >= 61 && secondaryRoll <= 65:
-      items = [...items, ...rollItems(2, 12, tengpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 6, magicItemTableB)];
-      if (Math.random() < 0.5) {
-        items = [...items, ...rollItems(0, 1, tashasMITuncommonTypes)];
-      }
-      break;
-    case secondaryRoll >= 66 && secondaryRoll <= 70:
-      items = [...items, ...rollItems(2, 8, twentyfivegpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableB)];
-      if (Math.random() < 0.5) {
-        items = [...items, ...rollItems(0, 1, tashasMITuncommonTypes)];
-      }
-      break;
-    case secondaryRoll >= 71 && secondaryRoll <= 75:
-      items = [...items, ...rollItems(2, 12, fiftygpgemstoneTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableB)];
-      items = [...items, ...rollItems(0, 1, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 76 && secondaryRoll <= 78:
-      items = [...items, ...rollItems(2, 12, tengpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableC)];
-      items = [...items, ...rollItems(0, 1, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 79 && secondaryRoll <= 80:
-      items = [...items, ...rollItems(2, 8, twentyfivegpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableC)];
-      items = [...items, ...rollItems(0, 1, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 81 && secondaryRoll <= 85:
-      items = [...items, ...rollItems(2, 12, fiftygpgemstoneTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableC)];
-      items = [...items, ...rollItems(0, 1, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 86  && secondaryRoll >= 86 && secondaryRoll <= 92:
-      items = [...items, ...rollItems(2, 8, twentyfivegpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableF)];
-      items = [...items, ...rollItems(0, 2, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 93 && secondaryRoll <= 97:
-      items =  [...items, ...rollItems(2, 12, fiftygpgemstoneTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableF)];
-      items = [...items, ...rollItems(0, 2, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 98 && secondaryRoll <= 99:
-      items = [...items, ...rollItems(2, 8, twentyfivegpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 1, magicItemTableG)];
-      items = [...items, ...rollItems(0, 2, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll === 100:
-      items = [...items, ...rollItems(2, 12, fiftygpgemstoneTypesW)];
-      items = [...items, ...rollItems(1, 1, magicItemTableG)];
-      items = [...items, ...rollItems(2, 2, tashasMITuncommonTypes)];
-      break;
-    default:
-      break;
-  }
-
-  const subResults = items
-.filter((item) => typeof item.item === "function")
-.map((item) => {
-  const { roll, item: subResultItem } = item.item();
-  if (Array.isArray(subResultItem)) {
-
-    const [minIndex, maxIndex] = subResultItem[""];
-    const itemDescriptions = subResultItem.slice(1);
-    const selectedIndex = Math.floor(Math.random() * (maxIndex - minIndex + 1) + minIndex);
-    return `${roll}: ${itemDescriptions[selectedIndex - 1]}`;
-  } else {
-
-    return `${roll}: ${subResultItem}`;
-  }
-});
-const formattedItems = subResults.join("<br>");
-
-const messageContent = `CP: ${cpAmount}<br>SP: ${spAmount}<br>GP: ${gpAmount}<br>Items:${JSON.stringify(items, null, 2)}<br>${formattedItems}`;
-
-if(typeof showItemsDialog === 'function') {
-const itemBox = document.createElement("div");
-itemBox.style.border = "1px solid black";
-itemBox.style.padding = "10px";
-itemBox.style.marginTop = "10px";
-itemBox.innerHTML = messageContent;
-
-const buttons = {
-  ok: {
-    label: "OK",
-  },
-};
-
-new Dialog({
-  title: "CR 0 to 4 Hoard",
-  content: "CR 0 to 4 Hoard, journal entry created.",
-  buttons: buttons,
-  default: "ok",
-}).render(true);
-
-const now = new Date();
-const year = now.getFullYear().toString().substring(2);
-const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}
-                  ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}
-                  :${now.getSeconds().toString().padStart(2, '0')}`;
-
-const journalEntryName = `CR 0 to 4 Hoard (${timeStamp})`;
-await JournalEntry.create({
-  name: journalEntryName,
-  content: `<div style="text-align: right;">${messageContent.replaceAll('"range"', "<br>").replaceAll('",', "<br>")}</div>
-  ..............................................................................................<br>
-  ............>___________________________________<..............<br>
-  ...........>(VVVVVVVVVVVVV..I0I..VVVVVVVVVVVVV)<........<br>
-  ..........>((##########((I#I(*,,0-4,,*)I#I))###########))<......<br>
-  ............>(^^^^^^^^^^^^^^^(((##I##)))^^^^^^^^^^^^^^^)<...........<br>
-  ............>(^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^)<............<br>
-  .............>((($*$*$$*$$*$*$$*$*$*$$*$$*$*$$*$*$$))<...........<br>
-  ............>(($*$$$*$$*$*$$*$$$*$$$*$*$$$*$$*$$*$))<..........<br>
-  ..........>((($$*$$*$*$$*$$$*$$*$*$$$$*$*$$*$$*$$$)))<.........<br>
-  '.......>((###############(((((/ \\)))))###############))<.....'<br>
-  .......>(#((*********************((((I))))*********************))#)<......<br>
-  ......>(((((***************************************************)))))<.....<br>
-  .......>(((*****************************************************)))<......<br>
-  ........>(((***************************************************)))<.......<br>
-  .........>((***************************************************))<........<br>
-  ..........>(####################################).........<br>
-  ..............................................................................................<br>
-  ..............................................................................................<br>`,
-  Permission: CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER,
-});
-
-
-if (!game.user.isGM) {
-await ChatMessage.create({ content: messageContent.replaceAll('"range"', "<br>").replaceAll('",', "<br>") });
-} else {
-const journalEntry = await game.journal.getName(journalEntryName);
-if (journalEntry) {
-  journalEntry.update({ "permission.default": CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER });
-  game.socket.emit("createJournalEntry", { journalEntry });
-}
-}}}
 
   async function treasureHoardCR5to10() {
     const cpAmount = Math.floor(Math.random(2 , 12) * 100);
@@ -13275,234 +13258,6 @@ xhr.open('GET', path, true);
 xhr.send();
 })};
 
-async function tashasMITreasureHoardCR5to10() {
-  const cpAmount = Math.floor(Math.random(2 , 12) * 100);
-  const spAmount = Math.floor(Math.random(2 , 12) * 1000);
-  const gpAmount = Math.floor(Math.random(6 , 36) * 100);
-  const ppAmount = Math.floor(Math.random(3 , 18) * 10);
-
-  let items = [];
-  const secondaryRoll = roll(1, 100);
-  switch (true) {
-    case secondaryRoll >= 1 && secondaryRoll <= 4:
-      items = [...items, ...rollItems(1, 2, twentyfivegpartobjectsTypesW)];
-      items = [...items, ...rollItems(0, 1, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 5 && secondaryRoll <= 10:
-      items = [...items, ...rollItems(2, 8, twentyfivegpartobjectsTypesW)];
-      items = [...items, ...rollItems(0, 1, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 11 && secondaryRoll <= 16:
-      items = [...items, ...rollItems(3, 18, fiftygpgemstoneTypesW)];
-      items = [...items, ...rollItems(0, 1, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 17 && secondaryRoll <= 22:
-      items = [...items, ...rollItems(3, 18, onehundredgpgemstonesTypesW)];
-      items = [...items, ...rollItems(0, 1, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 23 && secondaryRoll <= 28:
-      items = [...items, ...rollItems(2, 8, twofiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 1, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 29 && secondaryRoll <= 32:
-      items = [...items, ...rollItems(2, 8, twentyfivegpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 6, magicItemTableA)];
-      items = [...items, ...rollItems(1, 1, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 33 && secondaryRoll <= 36:
-      items = [...items, ...rollItems(3, 18, fiftygpgemstoneTypesW)];
-      items = [...items, ...rollItems(1, 6, magicItemTableA)];
-      items = [...items, ...rollItems(1, 1, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 37 && secondaryRoll <= 40:
-      items = [...items, ...rollItems(3, 18, onehundredgpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 6, magicItemTableA)];
-      items = [...items, ...rollItems(0, 2, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 41 && secondaryRoll <= 44:
-      items = [...items, ...rollItems(2, 8, twofiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 6, magicItemTableA)];
-      items = [...items, ...rollItems(0, 2, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 45 && secondaryRoll <= 49:
-      items = [...items, ...rollItems(2, 8, twentyfivegpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableB)];
-      items = [...items, ...rollItems(0, 2, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 50 && secondaryRoll <= 54:
-      items = [...items, ...rollItems(3, 18, fiftygpgemstoneTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableB)];
-      items = [...items, ...rollItems(0, 3, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 55 && secondaryRoll <= 59:
-      items = [...items, ...rollItems(3, 18, onehundredgpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableB)];
-      items = [...items, ...rollItems(0, 3, tashasMITuncommonTypes)];
-        break;
-    case secondaryRoll >= 60 && secondaryRoll <= 63:
-      items = [...items, ...rollItems(2, 8, twofiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableB)];
-      items = [...items, ...rollItems(0, 3, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 64 && secondaryRoll <= 66:
-      items = [...items, ...rollItems(2, 8, twentyfivegpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableC)];
-      items = [...items, ...rollItems(0, 3, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 67 && secondaryRoll <= 69:
-      items = [...items, ...rollItems(3, 18, fiftygpgemstoneTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableC)];
-      items = [...items, ...rollItems(0, 3, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 70 && secondaryRoll <= 72:
-      items = [...items, ...rollItems(3, 18, onehundredgpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableC)];
-      items = [...items, ...rollItems(0, 3, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 73 && secondaryRoll <= 74:
-      items = [...items, ...rollItems(2, 8, twofiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableD)];
-      items = [...items, ...rollItems(0, 3, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 75 && secondaryRoll <= 76:
-      items = [...items, ...rollItems(2, 8, twentyfivegpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 1, magicItemTableD)];
-      items = [...items, ...rollItems(0, 3, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 77 && secondaryRoll <= 78:
-      items = [...items, ...rollItems(3, 18, fiftygpgemstoneTypesW)];
-      items = [...items, ...rollItems(1, 1, magicItemTableD)];
-      items = [...items, ...rollItems(0, 1, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll === 79:
-      items = [...items, ...rollItems(3, 18, onehundredgpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 1, magicItemTableD)];
-      items = [...items, ...rollItems(0, 1, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll === 80:
-      items = [...items, ...rollItems(2, 8, twofiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 1, magicItemTableD)];
-      items = [...items, ...rollItems(0, 1, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 81 && secondaryRoll <= 84:
-      items = [...items, ...rollItems(2, 8, twentyfivegpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableF)];
-      items = [...items, ...rollItems(1, 1, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 85 && secondaryRoll <= 88:
-      items = [...items, ...rollItems(3, 18, fiftygpgemstoneTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableF)];
-      items = [...items, ...rollItems(1, 1, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 89 && secondaryRoll <= 91:
-      items = [...items, ...rollItems(3, 18, onehundredgpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableF)];
-      items = [...items, ...rollItems(1, 1, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 92 && secondaryRoll <= 94:
-      items = [...items, ...rollItems(2, 8, twofiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableF)];
-      items = [...items, ...rollItems(1, 1, tashasMITuncommonTypes)];
-      break;
-    case secondaryRoll >= 95 && secondaryRoll <= 96:
-       items = [...items, ...rollItems(3, 18, onehundredgpgemstonesTypesW)];
-        items = [...items, ...rollItems(1, 4, magicItemTableG)];
-        items = [...items, ...rollItems(0, 2, tashasMITuncommonTypes)];
-
-        break;
-      case secondaryRoll === 99:
-        items = [...items, ...rollItems(2, 8, twofiftygpartobjectsTypesW)];
-        items = [...items, ...rollItems(1, 4, magicItemTableG)];
-        items = [...items, ...rollItems(0, 2, tashasMITuncommonTypes)];
-        break;
-      case secondaryRoll === 100:
-        items = [...items, ...rollItems(3, 18, onehundredgpgemstonesTypesW)];
-        items = [...items, ...rollItems(1, 1, magicItemTableH)];
-        items = [...items, ...rollItems(1, 2, tashasMITuncommonTypes)];
-        break;
-      default:
-        break;
-    }
-  const subResults = items
-.filter((item) => typeof item.item === "function")
-.map((item) => {
-  const { roll, item: subResultItem } = item.item();
-  if (Array.isArray(subResultItem)) {
-
-    const [minIndex, maxIndex] = subResultItem[""];
-    const itemDescriptions = subResultItem.slice(1);
-    const selectedIndex = Math.floor(Math.random() * (maxIndex - minIndex + 1) + minIndex);
-    return `${roll}: ${itemDescriptions[selectedIndex - 1]}`;
-  } else {
-
-    return `${roll}: ${subResultItem}`;
-  }
-});
-const formattedItems = subResults.join("<br>");
-
-  const messageContent = `CP: ${cpAmount}<br>SP: ${spAmount}<br>GP: ${gpAmount}<br>PP: ${ppAmount}<br>Items:${JSON.stringify(items, null, 2)}<br>${formattedItems}`;
-
-if(typeof showItemsDialog === 'function') {
-const itemBox = document.createElement("div");
-itemBox.style.border = "1px solid black";
-itemBox.style.padding = "10px";
-itemBox.style.marginTop = "10px";
-itemBox.innerHTML = messageContent;
-
-const buttons = {
-  ok: {
-    label: "OK",
-  },
-};
-
-new Dialog({
-  title: "CR 5 to 10 Hoard",
-  content: "CR 5 to 10 Hoard, journal entry created.",
-  buttons: buttons,
-  default: "ok",
-}).render(true);
-
-const now = new Date();
-const year = now.getFullYear().toString().substring(2);
-const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}
-                  ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}
-                  :${now.getSeconds().toString().padStart(2, '0')}`;
-
-const journalEntryName = `CR 5 to 10 Hoard (${timeStamp})`;
-await JournalEntry.create({
-  name: journalEntryName,
-  content: `<div style="text-align: right;">${messageContent.replaceAll('"range"', "<br>").replaceAll('",', "<br>")}</div>
-  ..............................................................................................<br>
-  ............>___________________________________<..............<br>
-  ...........>(VVVVVVVVVVVVV..I0I..VVVVVVVVVVVVV)<........<br>
-  ..........>((##########((#I(*,5-10,*)I#))###########))<......<br>
-  ............>(^^^^^^^^^^^^^^^(((##I##)))^^^^^^^^^^^^^^^)<...........<br>
-  ............>(^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^)<............<br>
-  .............>((($*$*$$*$$*$*$$*$*$*$$*$$*$*$$*$*$$))<...........<br>
-  ............>(($*$$$*$$*$*$$*$$$*$$$*$*$$$*$$*$$*$))<..........<br>
-  ..........>((($$*$$*$*$$*$$$*$$*$*$$$$*$*$$*$$*$$$)))<.........<br>
-  '.......>((###############(((((/ \\)))))###############))<.....'<br>
-  .......>(#((*********************((((I))))*********************))#)<......<br>
-  ......>(((((***************************************************)))))<.....<br>
-  .......>(((*****************************************************)))<......<br>
-  ........>(((***************************************************)))<.......<br>
-  .........>((***************************************************))<........<br>
-  ..........>(####################################).........<br>
-  ..............................................................................................<br>
-  ..............................................................................................<br>`,
-  Permission: CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER,
-});
-
-
-if (!game.user.isGM) {
-await ChatMessage.create({ content: messageContent.replaceAll('"range"', "<br>").replaceAll('" }, {', "<br>") });
-} else {
-const journalEntry = await game.journal.getName(journalEntryName);
-if (journalEntry) {
-  journalEntry.update({ "permission.default": CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER });
-  game.socket.emit("createJournalEntry", { journalEntry });
-}
-}}}
 
 async function treasureHoardCR11to16() {
   const gpAmount = Math.floor(Math.random(4, 24) * 1000);
@@ -13756,288 +13511,6 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
     xhr.send();
     })};
                   
-async function tashasMITreasureHoardCR11to16() {
-  const gpAmount = Math.floor(Math.random(4, 24) * 1000);
-  const ppAmount = Math.floor(Math.random(5, 30) * 100);
-
-  let items = [];
-  const secondaryRoll = roll(1, 100);
-  switch (true) {
-    case secondaryRoll >= 1 && secondaryRoll <= 3:
-      items = [...items, ...rollItems(1, 2, twofiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(0, 1, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 4 && secondaryRoll <= 6:
-      items = [...items, ...rollItems(2, 8, twofiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(0, 1, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 7 && secondaryRoll <= 9:
-      items = [...items, ...rollItems(2, 8, sevenfiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(0, 1, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 10 && secondaryRoll <= 12:
-      items = [...items, ...rollItems(3, 18, fivehundredgpgemstonesTypesW)];
-      items = [...items, ...rollItems(0, 1, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 13 && secondaryRoll <= 15:
-      items = [...items, ...rollItems(3, 18, onethousandgpgemstonesTypesW)];
-      items = [...items, ...rollItems(0, 1, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 16 && secondaryRoll <= 19:
-      items = [...items, ...rollItems(2, 8, twofiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableA)];
-      items = [...items, ...rollItems(1, 6, magicItemTableB)];
-      items = [...items, ...rollItems(0, 1, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 20 && secondaryRoll <= 23:
-      items = [...items, ...rollItems(2, 8, sevenfiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableA)];
-      items = [...items, ...rollItems(1, 6, magicItemTableB)];
-      items = [...items, ...rollItems(0, 2, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 24 && secondaryRoll <= 26:
-      items = [...items, ...rollItems(3, 18, fivehundredgpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableA)];
-      items = [...items, ...rollItems(1, 6, magicItemTableB)];
-      items = [...items, ...rollItems(0, 2, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 27 && secondaryRoll <= 29:
-      items = [...items, ...rollItems(3, 18, onethousandgpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableA)];
-      items = [...items, ...rollItems(1, 6, magicItemTableB)];
-      items = [...items, ...rollItems(0, 2, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 30 && secondaryRoll <= 35:
-      items = [...items, ...rollItems(2, 8, twofiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 6, magicItemTableC)];
-      items = [...items, ...rollItems(0, 2, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 36 && secondaryRoll <= 40:
-      items = [...items, ...rollItems(2, 8, sevenfiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 6, magicItemTableC)];
-      items = [...items, ...rollItems(0, 2, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 41 && secondaryRoll <= 45:
-      items = [...items, ...rollItems(3, 18, fivehundredgpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 6, magicItemTableC)];
-      items = [...items, ...rollItems(0, 3, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 46 && secondaryRoll <= 50:
-      items = [...items, ...rollItems(3, 18, onethousandgpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableD)];
-      items = [...items, ...rollItems(0, 3, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 51 && secondaryRoll <= 54:
-      items = [...items, ...rollItems(2, 8, twofiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableE)];
-      items = [...items, ...rollItems(0, 3, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 55 && secondaryRoll <= 58:
-      items = [...items, ...rollItems(2, 8, sevenfiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableE)];
-      items = [...items, ...rollItems(0, 3, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 59 && secondaryRoll <= 62:
-      items = [...items, ...rollItems(3, 18, fivehundredgpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableE)];
-      items = [...items, ...rollItems(0, 4, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 63 && secondaryRoll <= 66:
-      items = [...items, ...rollItems(3, 18, onethousandgpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableE)];
-      items = [...items, ...rollItems(0, 4, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 67 && secondaryRoll <= 68:
-      items = [...items, ...rollItems(2, 8, twofiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 1, magicItemTableF)];
-      items = [...items, ...rollItems(0, 4, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 69 && secondaryRoll <= 70:
-      items = [...items, ...rollItems(2, 8, sevenfiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 1, magicItemTableF)];
-      items = [...items, ...rollItems(0, 4, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 71 && secondaryRoll <= 72:
-      items = [...items, ...rollItems(3, 18, fivehundredgpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 1, magicItemTableF)];
-      items = [...items, ...rollItems(0, 4, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 73 && secondaryRoll <= 74:
-      items = [...items, ...rollItems(3, 18, onethousandgpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 1, magicItemTableF)];
-      items = [...items, ...rollItems(0, 4, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 75 && secondaryRoll <= 76:
-      items = [...items, ...rollItems(2, 8, twofiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 1, magicItemTableG)];
-      items = [...items, ...rollItems(0, 3, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 77 && secondaryRoll <= 78:
-      items = [...items, ...rollItems(2, 8, sevenfiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 1, magicItemTableG)];
-      items = [...items, ...rollItems(0, 3, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 79 && secondaryRoll <= 80:
-      items = [...items, ...rollItems(3, 18, fivehundredgpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 1, magicItemTableG)];
-      items = [...items, ...rollItems(0, 3, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 81 && secondaryRoll <= 82:
-      items = [...items, ...rollItems(3, 18, onethousandgpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 1, magicItemTableG)];
-      items = [...items, ...rollItems(0, 3, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 83 && secondaryRoll <= 85:
-      items = [...items, ...rollItems(2, 8, twofiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableH)];
-      items = [...items, ...rollItems(0, 3, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 86 && secondaryRoll <= 88:
-      items = [...items, ...rollItems(2, 8, sevenfiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableH)];
-      items = [...items, ...rollItems(0, 3, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 89 && secondaryRoll <= 90:
-      items = [...items, ...rollItems(3, 18, fivehundredgpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableH)];
-      items = [...items, ...rollItems(0, 3, tashasMITrareTypes)];
-      break;
-    case secondaryRoll >= 91 && secondaryRoll <= 92:
-      items = [...items, ...rollItems(3, 18, onethousandgpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 4, magicItemTableH)];
-      items = [...items, ...rollItems(0, 2, tashasMITrareTypes)];
-      if(Math.random() < 0.05) {
-        items = [...items, ...rollItems(0, 1, tashasMITrareplus)];}
-      break;
-    case secondaryRoll >= 93 && secondaryRoll <= 94:
-      items = [...items, ...rollItems(2, 8, twofiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 1, magicItemTableI)];
-      items = [...items, ...rollItems(0, 2, tashasMITrareTypes)];
-      if(Math.random() < 0.05) {
-        items = [...items, ...rollItems(0, 1, tashasMITrareplus)];}
-      break;
-    case secondaryRoll >= 95 && secondaryRoll <= 96:
-      items = [...items, ...rollItems(2, 8, sevenfiftygpartobjectsTypesW)];
-      items = [...items, ...rollItems(1, 1, magicItemTableI)];
-      items = [...items, ...rollItems(0, 2, tashasMITrareTypes)];
-      if(Math.random() < 0.05) {
-        items = [...items, ...rollItems(0, 1, tashasMITrareplus)];}
-      break;
-    case secondaryRoll >= 97 && secondaryRoll <= 98:
-      items = [...items, ...rollItems(3, 18, fivehundredgpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 1, magicItemTableD)];
-      items = [...items, ...rollItems(0, 2, tashasMITrareTypes)];
-      if(Math.random() < 0.05) {
-        items = [...items, ...rollItems(0, 1, tashasMITrareplus)];}
-      break;
-    case secondaryRoll >= 99 && secondaryRoll <= 100:
-      items = [...items, ...rollItems(3, 18, onethousandgpgemstonesTypesW)];
-      items = [...items, ...rollItems(1, 1, magicItemTableD)];
-      items = [...items, ...rollItems(0, 2, tashasMITrareTypes)];
-      if(Math.random() < 0.1) {
-        items = [...items, ...rollItems(0, 1, tashasMITrareplus)];}
-      break;
-      default:
-      break;
-    }    
-        const subResults = items
-        .filter((item) => typeof item.item === "function")
-        .map((item) => {
-          const { roll, item: subResultItem } = item.item();
-          if (Array.isArray(subResultItem)) {
-      
-            const [minIndex, maxIndex] = subResultItem[""];
-            const itemDescriptions = subResultItem.slice(1);
-            const selectedIndex = Math.floor(Math.random() * (maxIndex - minIndex + 1) + minIndex);
-            return `${roll}: ${itemDescriptions[selectedIndex - 1]}`;
-          } else {
-      
-            return `${roll}: ${subResultItem}`;
-          }
-        });
-      const formattedItems = subResults.join("<br>");
-      
-              const messageContent = `GP: ${gpAmount}<br>PP: ${ppAmount}<br>Items:${JSON.stringify(items, null, 2)}<br>${formattedItems}`;
-
-      if(typeof showItemsDialog === 'function') {
-        const itemBox = document.createElement("div");
-        itemBox.style.border = "1px solid black";
-        itemBox.style.padding = "10px";
-        itemBox.style.marginTop = "10px";
-        itemBox.innerHTML = messageContent;
-      
-        const buttons = {
-          ok: {
-            label: "OK",
-          },
-        };
-      
-        new Dialog({
-          title: "CR 11 to 16 Hoard",
-          content: "CR 11 to 16 Hoard, journal entry created.",
-          buttons: buttons,
-          default: "ok",
-        }).render(true);
-      
-const now = new Date();
-const year = now.getFullYear().toString().substring(2);
-const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}
-                  ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}
-                  :${now.getSeconds().toString().padStart(2, '0')}`;
-      
-      const journalEntryName = `CR 11 to 16 Hoard (${timeStamp})`;
-await JournalEntry.create({
-  name: journalEntryName,
-  content: `<div style="text-align: right;">${messageContent.replaceAll('"range"', "<br>").replaceAll('",', "<br>")}</div>
-  ..............................................................................................<br>
-  ............>___________________________________<..............<br>
-  ...........>(VVVVVVVVVVVVV..I0I..VVVVVVVVVVVVV)<........<br>
-  ..........>((##########((I#I(*,11to16,*)I#I))###########))<......<br>
-  ............>(^^^^^^^^^^^^^^^(((##I##)))^^^^^^^^^^^^^^^)<...........<br>
-  ............>(^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^)<............<br>
-  .............>((($*$*$$*$$*$*$$*$*$*$$*$$*$*$$*$*$$))<...........<br>
-  ............>(($*$$$*$$*$*$$*$$$*$$$*$*$$$*$$*$$*$))<..........<br>
-  ..........>((($$*$$*$*$$*$$$*$$*$*$$$$*$*$$*$$*$$$)))<.........<br>
-  '.......>((###############(((((/ \\)))))###############))<.....'<br>
-  .......>(#((*********************((((I))))*********************))#)<......<br>
-  ......>(((((***************************************************)))))<.....<br>
-  .......>(((*****************************************************)))<......<br>
-  ........>(((***************************************************)))<.......<br>
-  .........>((***************************************************))<........<br>
-  ..........>(####################################).........<br>
-  ..............................................................................................<br>
-  ..............................................................................................<br>`,
-  Permission: CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER,
-});
-
-
-if (!game.user.isGM) {
-  await ChatMessage.create({ content: messageContent.replaceAll('"range"', "<br>").replaceAll('" }, {', "<br>") });
-} else {
-  const journalEntry = await game.journal.getName(journalEntryName);
-  if (journalEntry) {
-    journalEntry.update({ "permission.default": CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER });
-    game.socket.emit("createJournalEntry", { journalEntry });
-  }
-}}}
-
-window.addEventListener('load', function() {
-  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
-  const xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      try {
-        const div = document.createElement('div');
-        div.innerHTML = xhr.responseText;
-        document.body.appendChild(div);
-      } catch (e) {
-        console.error(e);
-      }
-    }
-  };
-  xhr.open('GET', path, true);
-  xhr.send();
-});
 
 console.log("SF CR Loot Roller UI loaded");
 
@@ -15671,135 +15144,135 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
               xhr.send();
               });
             
-        async function gsvendorInventoryPoor() {
-      let items = [];
-      const secondaryRoll = Math.floor(Math.random() * 100) + 1;
-        switch (true) {
-            case secondaryRoll >= 1 && secondaryRoll <= 2:
-              items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
-              items = [...items, ...rollInventory(5, 20, phAdventuringGearTypes)];
-              break;
-            case secondaryRoll >= 3 && secondaryRoll <= 5:
-              items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-              break;
-            case secondaryRoll >= 6 && secondaryRoll <= 8:
-              items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
-              items = [...items, ...rollInventory(5, 20, phAdventuringGearTypes)];        
-              break;
-            case secondaryRoll >= 9 && secondaryRoll <= 11:
-              items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
-              items = [...items, ...rollInventory(2, 4, magicItemTableA),];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];              
-              break;
-            case secondaryRoll >= 12 && secondaryRoll <= 14:
-              items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
-              items = [...items, ...rollInventory(1, 4, magicItemTableA),];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];              
-              break;
-            case secondaryRoll >= 15 && secondaryRoll <= 22:
-              items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
-              items = [...items, ...rollInventory(1, 5, magicItemTableA),];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-              break;
-            case secondaryRoll >= 23 && secondaryRoll <= 30:
-              items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
-              items = [...items, ...rollInventory(2, 4, magicItemTableB)];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-              break;
-            case secondaryRoll >= 31 && secondaryRoll <= 38:
-              items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
-              items = [...items, ...rollInventory(2, 6, magicItemTableB)];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-              break;
-            case secondaryRoll >= 39 && secondaryRoll <= 46:
-              items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
-              items = [...items, ...rollInventory(1, 7, magicItemTableB)];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-              break;
-            case secondaryRoll >= 47 && secondaryRoll <= 52:
-              items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
-              items = [...items, ...rollInventory(2, 6, magicItemTableB)];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-              break;
-            case secondaryRoll >= 53 && secondaryRoll <= 58:
-              items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
-              items = [...items, ...rollInventory(3, 5, magicItemTableC)];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-              break;
-            case secondaryRoll >= 59 && secondaryRoll <= 63:
-              items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
-              items = [...items, ...rollInventory(4, 4, magicItemTableC)];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-              break;
-            case secondaryRoll >= 64 && secondaryRoll <= 68:
-              items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
-              items = [...items, ...rollInventory(1, 5, magicItemTableC)];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-              break;
-            case secondaryRoll >= 69:
-              items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
-              items = [...items, ...rollInventory(2, 4, magicItemTableC),];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-              break;
-            case secondaryRoll >= 70:
-              items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
-              items = [...items, ...rollInventory(3, 4, magicItemTableF),];
-              items = [...items, ...rollInventory(15, 20, phAdventuringGearTypes)];      
-              break;
-            case secondaryRoll >= 71:
-              items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
-              items = [...items, ...rollInventory(3, 3, magicItemTableF)];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-              break;
-            case secondaryRoll >= 72:
-              items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
-              items = [...items, ...rollInventory(1, 6, magicItemTableF)];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-              break;
-            case secondaryRoll >= 73 && secondaryRoll <= 74:
-              items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
-              items = [...items, ...rollInventory(2, 5, magicItemTableF)];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-              break;
-            case secondaryRoll >= 75 && secondaryRoll <= 76:
-              items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
-              items = [...items, ...rollInventory(1, 4, magicItemTableF)];
-              items = [...items, ...rollInventory(15, 20, phAdventuringGearTypes)];      
-              break;
-            case secondaryRoll >= 77 && secondaryRoll <= 78:
-              items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
-              items = [...items, ...rollInventory(1, 3, magicItemTableG)];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-              break;
-            case secondaryRoll >= 79 && secondaryRoll <= 80:
-              items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
-              items = [...items, ...rollInventory(2, 3, magicItemTableG)];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-              break;
-            case secondaryRoll >= 81 && secondaryRoll <= 85:
-              items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
-              items = [...items, ...rollInventory(2, 4, magicItemTableG)];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-              break;
-            case secondaryRoll >= 86 && secondaryRoll <= 90:
-              items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
-              items = [...items, ...rollInventory(1, 4, magicItemTableG)];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-              break;
-            case secondaryRoll >= 91 && secondaryRoll <= 95:
-              items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
-              items = [...items, ...rollInventory(1, 3, magicItemTableG)];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-              break;
-            case secondaryRoll >= 96 && secondaryRoll <= 100:
-              items = [...items, ...rollInventory(3, 7, basicPotionTypes)];
-              items = [...items, ...rollInventory(2, 4, magicItemTableH),];
-              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-              break;
-            default:
-              break;
-        }
+async function gsvendorInventoryPoor() {
+let items = [];
+const secondaryRoll = Math.floor(Math.random() * 100) + 1;
+  switch (true) {
+      case secondaryRoll >= 1 && secondaryRoll <= 2:
+        items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(5, 20, phAdventuringGearTypes)];
+        break;
+      case secondaryRoll >= 3 && secondaryRoll <= 5:
+        items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 6 && secondaryRoll <= 8:
+        items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(5, 20, phAdventuringGearTypes)];        
+        break;
+      case secondaryRoll >= 9 && secondaryRoll <= 11:
+        items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 4, magicItemTableA),];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];              
+        break;
+      case secondaryRoll >= 12 && secondaryRoll <= 14:
+        items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(1, 4, magicItemTableA),];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];              
+        break;
+      case secondaryRoll >= 15 && secondaryRoll <= 22:
+        items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(1, 5, magicItemTableA),];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 23 && secondaryRoll <= 30:
+        items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 4, magicItemTableB)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 31 && secondaryRoll <= 38:
+        items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 6, magicItemTableB)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 39 && secondaryRoll <= 46:
+        items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(1, 7, magicItemTableB)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 47 && secondaryRoll <= 52:
+        items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 6, magicItemTableB)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 53 && secondaryRoll <= 58:
+        items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(3, 5, magicItemTableC)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 59 && secondaryRoll <= 63:
+        items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(4, 4, magicItemTableC)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 64 && secondaryRoll <= 68:
+        items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(1, 5, magicItemTableC)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 69:
+        items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 4, magicItemTableC),];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 70:
+        items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(3, 4, magicItemTableF),];
+        items = [...items, ...rollInventory(15, 20, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 71:
+        items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(3, 3, magicItemTableF)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 72:
+        items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+        items = [...items, ...rollInventory(1, 6, magicItemTableF)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 73 && secondaryRoll <= 74:
+        items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 5, magicItemTableF)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 75 && secondaryRoll <= 76:
+        items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+        items = [...items, ...rollInventory(1, 4, magicItemTableF)];
+        items = [...items, ...rollInventory(15, 20, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 77 && secondaryRoll <= 78:
+        items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+        items = [...items, ...rollInventory(1, 3, magicItemTableG)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 79 && secondaryRoll <= 80:
+        items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 3, magicItemTableG)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 81 && secondaryRoll <= 85:
+        items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 4, magicItemTableG)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 86 && secondaryRoll <= 90:
+        items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+        items = [...items, ...rollInventory(1, 4, magicItemTableG)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 91 && secondaryRoll <= 95:
+        items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+        items = [...items, ...rollInventory(1, 3, magicItemTableG)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 96 && secondaryRoll <= 100:
+        items = [...items, ...rollInventory(3, 7, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 4, magicItemTableH),];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      default:
+        break;
+  }
 
 const subResults = items.map((item) => {
   if (typeof item.item === "function") {
@@ -15919,135 +15392,135 @@ await JournalEntry.create({
       xhr.send();
       });
     
-            async function gsvendorInventoryWretched() {
-              let items = [];
-              const secondaryRoll = Math.floor(Math.random() * 100) + 1;
-                switch (true) {
-                    case secondaryRoll >= 1 && secondaryRoll <= 2:
-                      items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
-                      items = [...items, ...rollInventory(3, 10, phAdventuringGearTypes)];
-                      break;
-                    case secondaryRoll >= 3 && secondaryRoll <= 5:
-                      items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
-                      items = [...items, ...rollInventory(5, 10, phAdventuringGearTypes)];      
-                      break;
-                    case secondaryRoll >= 6 && secondaryRoll <= 8:
-                      items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
-                      items = [...items, ...rollInventory(5, 15, phAdventuringGearTypes)];        
-                      break;
-                    case secondaryRoll >= 9 && secondaryRoll <= 11:
-                      items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
-                      items = [...items, ...rollInventory(1, 3, magicItemTableA),];
-                      items = [...items, ...rollInventory(5, 15, phAdventuringGearTypes)];              
-                      break;
-                    case secondaryRoll >= 12 && secondaryRoll <= 14:
-                      items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
-                      items = [...items, ...rollInventory(1, 4, magicItemTableA),];
-                      items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];              
-                      break;
-                    case secondaryRoll >= 15 && secondaryRoll <= 22:
-                      items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
-                      items = [...items, ...rollInventory(1, 5, magicItemTableA),];
-                      items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-                      break;
-                    case secondaryRoll >= 23 && secondaryRoll <= 30:
-                      items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
-                      items = [...items, ...rollInventory(1, 4, magicItemTableB)];
-                      items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-                      break;
-                    case secondaryRoll >= 31 && secondaryRoll <= 38:
-                      items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
-                      items = [...items, ...rollInventory(1, 6, magicItemTableB)];
-                      items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-                      break;
-                    case secondaryRoll >= 39 && secondaryRoll <= 46:
-                      items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
-                      items = [...items, ...rollInventory(2, 5, magicItemTableB)];
-                      items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-                      break;
-                    case secondaryRoll >= 47 && secondaryRoll <= 52:
-                      items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
-                      items = [...items, ...rollInventory(1, 6, magicItemTableB)];
-                      items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-                      break;
-                    case secondaryRoll >= 53 && secondaryRoll <= 58:
-                      items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
-                      items = [...items, ...rollInventory(2, 5, magicItemTableC)];
-                      items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-                      break;
-                    case secondaryRoll >= 59 && secondaryRoll <= 63:
-                      items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
-                      items = [...items, ...rollInventory(2, 3, magicItemTableC)];
-                      items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-                      break;
-                    case secondaryRoll >= 64 && secondaryRoll <= 68:
-                      items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
-                      items = [...items, ...rollInventory(1, 5, magicItemTableC)];
-                      items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-                      break;
-                    case secondaryRoll >= 69:
-                      items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
-                      items = [...items, ...rollInventory(2, 3, magicItemTableC),];
-                      items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-                      break;
-                    case secondaryRoll >= 70:
-                      items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
-                      items = [...items, ...rollInventory(1, 4, magicItemTableF),];
-                      items = [...items, ...rollInventory(15, 20, phAdventuringGearTypes)];      
-                      break;
-                    case secondaryRoll >= 71:
-                      items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
-                      items = [...items, ...rollInventory(1, 3, magicItemTableF)];
-                      items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-                      break;
-                    case secondaryRoll >= 72:
-                      items = [...items, ...rollInventory(2, 6, commonPotionTypes)];
-                      items = [...items, ...rollInventory(1, 6, magicItemTableF)];
-                      items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-                      break;
-                    case secondaryRoll >= 73 && secondaryRoll <= 74:
-                      items = [...items, ...rollInventory(2, 6, commonPotionTypes)];
-                      items = [...items, ...rollInventory(1, 4, magicItemTableF)];
-                      items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-                      break;
-                    case secondaryRoll >= 75 && secondaryRoll <= 76:
-                      items = [...items, ...rollInventory(2, 6, commonPotionTypes)];
-                      items = [...items, ...rollInventory(1, 3, magicItemTableF)];
-                      items = [...items, ...rollInventory(15, 20, phAdventuringGearTypes)];      
-                      break;
-                    case secondaryRoll >= 77 && secondaryRoll <= 78:
-                      items = [...items, ...rollInventory(2, 6, commonPotionTypes)];
-                      items = [...items, ...rollInventory(1, 2, magicItemTableG)];
-                      items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-                      break;
-                    case secondaryRoll >= 79 && secondaryRoll <= 80:
-                      items = [...items, ...rollInventory(2, 6, commonPotionTypes)];
-                      items = [...items, ...rollInventory(1, 3, magicItemTableG)];
-                      items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-                      break;
-                    case secondaryRoll >= 81 && secondaryRoll <= 85:
-                      items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
-                      items = [...items, ...rollInventory(1, 4, magicItemTableG)];
-                      items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-                      break;
-                    case secondaryRoll >= 86 && secondaryRoll <= 90:
-                      items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
-                      items = [...items, ...rollInventory(2, 3, magicItemTableG)];
-                      items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-                      break;
-                    case secondaryRoll >= 91 && secondaryRoll <= 95:
-                      items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
-                      items = [...items, ...rollInventory(2, 2, magicItemTableG)];
-                      items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-                      break;
-                    case secondaryRoll >= 96 && secondaryRoll <= 100:
-                      items = [...items, ...rollInventory(3, 7, basicPotionTypes)];
-                      items = [...items, ...rollInventory(2, 3, magicItemTableH),];
-                      items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
-                      break;
-                    default:
-                      break;
-                }
+async function gsvendorInventoryWretched() {
+  let items = [];
+  const secondaryRoll = Math.floor(Math.random() * 100) + 1;
+    switch (true) {
+        case secondaryRoll >= 1 && secondaryRoll <= 2:
+          items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(3, 10, phAdventuringGearTypes)];
+          break;
+        case secondaryRoll >= 3 && secondaryRoll <= 5:
+          items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(5, 10, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 6 && secondaryRoll <= 8:
+          items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(5, 15, phAdventuringGearTypes)];        
+          break;
+        case secondaryRoll >= 9 && secondaryRoll <= 11:
+          items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(1, 3, magicItemTableA),];
+          items = [...items, ...rollInventory(5, 15, phAdventuringGearTypes)];              
+          break;
+        case secondaryRoll >= 12 && secondaryRoll <= 14:
+          items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(1, 4, magicItemTableA),];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];              
+          break;
+        case secondaryRoll >= 15 && secondaryRoll <= 22:
+          items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(1, 5, magicItemTableA),];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 23 && secondaryRoll <= 30:
+          items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(1, 4, magicItemTableB)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 31 && secondaryRoll <= 38:
+          items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(1, 6, magicItemTableB)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 39 && secondaryRoll <= 46:
+          items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 5, magicItemTableB)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 47 && secondaryRoll <= 52:
+          items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(1, 6, magicItemTableB)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 53 && secondaryRoll <= 58:
+          items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 5, magicItemTableC)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 59 && secondaryRoll <= 63:
+          items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 3, magicItemTableC)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 64 && secondaryRoll <= 68:
+          items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(1, 5, magicItemTableC)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 69:
+          items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 3, magicItemTableC),];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 70:
+          items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(1, 4, magicItemTableF),];
+          items = [...items, ...rollInventory(15, 20, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 71:
+          items = [...items, ...rollInventory(1, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(1, 3, magicItemTableF)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 72:
+          items = [...items, ...rollInventory(2, 6, commonPotionTypes)];
+          items = [...items, ...rollInventory(1, 6, magicItemTableF)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 73 && secondaryRoll <= 74:
+          items = [...items, ...rollInventory(2, 6, commonPotionTypes)];
+          items = [...items, ...rollInventory(1, 4, magicItemTableF)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 75 && secondaryRoll <= 76:
+          items = [...items, ...rollInventory(2, 6, commonPotionTypes)];
+          items = [...items, ...rollInventory(1, 3, magicItemTableF)];
+          items = [...items, ...rollInventory(15, 20, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 77 && secondaryRoll <= 78:
+          items = [...items, ...rollInventory(2, 6, commonPotionTypes)];
+          items = [...items, ...rollInventory(1, 2, magicItemTableG)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 79 && secondaryRoll <= 80:
+          items = [...items, ...rollInventory(2, 6, commonPotionTypes)];
+          items = [...items, ...rollInventory(1, 3, magicItemTableG)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 81 && secondaryRoll <= 85:
+          items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+          items = [...items, ...rollInventory(1, 4, magicItemTableG)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 86 && secondaryRoll <= 90:
+          items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+          items = [...items, ...rollInventory(2, 3, magicItemTableG)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 91 && secondaryRoll <= 95:
+          items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+          items = [...items, ...rollInventory(2, 2, magicItemTableG)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 96 && secondaryRoll <= 100:
+          items = [...items, ...rollInventory(3, 7, basicPotionTypes)];
+          items = [...items, ...rollInventory(2, 3, magicItemTableH),];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        default:
+          break;
+    }
 
 const subResults = items.map((item) => {
   if (typeof item.item === "function") {
@@ -27835,6 +27308,397 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
       xhr.send();
       });
 
+const searchForBuyer = [
+    { range: [1, 20], item: () => {
+      const oneTenthBuyer = [
+      { name: "A buyer offering a tenth of the base price",
+        uuid: "A buyer offering a tenth of the base price",
+        image: "icons/skills/social/trading-injustice-scale-gray.webp"
+      }, 
+    ];
+    const randomRoll = Math.floor(Math.random() * 100) + 1;
+    const randomIndex = Math.floor(Math.random() * oneTenthBuyer.length);
+    return { 
+      roll: randomRoll,
+      item: {
+        name: oneTenthBuyer[randomIndex].name,
+        uuid: oneTenthBuyer[randomIndex].uuid,
+        image: oneTenthBuyer[randomIndex].image}
+      }; 
+      }
+      },
+    { range: [21, 40], item: () => {
+      const QuarterBuyerwShadey = [
+      { name: "A buyer offering a quarter of the base price, and a shady buyer offering half the base price",
+        uuid: "A buyer offering a quarter of the base price, and a shady buyer offering half the base price",
+        image: "icons/skills/social/trading-injustice-scale-gray.webp"
+      }, 
+    ];
+    const randomRoll = Math.floor(Math.random() * 100) + 1;
+    const randomIndex = Math.floor(Math.random() * QuarterBuyerwShadey.length);
+    return { 
+      roll: randomRoll,
+      item: {
+        name: QuarterBuyerwShadey[randomIndex].name,
+        uuid: QuarterBuyerwShadey[randomIndex].uuid,
+        image: QuarterBuyerwShadey[randomIndex].image}
+      }; 
+      }
+      },
+    { range: [41, 80], item: () => {
+      const HalfBuyerwShady = [
+      { name: "A buyer offering half the base price, and a shady buyer offering the full base price",
+        uuid: "A buyer offering half the base price, and a shady buyer offering the full base price",
+        image: "icons/skills/social/diplomacy-unity-alliance.webp"
+      }, 
+    ];
+    const randomRoll = Math.floor(Math.random() * 100) + 1;
+    const randomIndex = Math.floor(Math.random() * HalfBuyerwShady.length);
+    return { 
+      roll: randomRoll,
+      item: {
+        name: HalfBuyerwShady[randomIndex].name,
+        uuid: HalfBuyerwShady[randomIndex].uuid,
+        image: HalfBuyerwShady[randomIndex].image}
+      }; 
+      }
+      },
+    { range: [81, 90], item: () => {
+      const oneFullBuyer = [
+      { name: "A buyer offering the full base price",
+        uuid: "A buyer offering the full base price",
+        image: "icons/environment/people/commoner.webp"
+      }, 
+    ];
+    const randomRoll = Math.floor(Math.random() * 100) + 1;
+    const randomIndex = Math.floor(Math.random() * oneFullBuyer.length);
+    return { 
+      roll: randomRoll,
+      item: {
+        name: oneFullBuyer[randomIndex].name,
+        uuid: oneFullBuyer[randomIndex].uuid,
+        image: oneFullBuyer[randomIndex].image}
+      }; 
+      }
+      },
+          { range: [91, 100], item: () => {
+      const oneShadyBuyer = [
+      { name: "A shady buyer offering one and a half times the base price, no questions asked",
+        uuid: "A shady buyer offering one and a half times the base price, no questions asked",
+        image: "icons/environment/settlement/wagon-black.webp"
+      }, 
+    ];
+    const randomRoll = Math.floor(Math.random() * 100) + 1;
+    const randomIndex = Math.floor(Math.random() * oneShadyBuyer.length);
+    return { 
+      roll: randomRoll,
+      item: {
+        name: oneShadyBuyer[randomIndex].name,
+        uuid: oneShadyBuyer[randomIndex].uuid,
+        image: oneShadyBuyer[randomIndex].image}
+      }; 
+      }
+      },
+    ]
+async function getBuyer() {
+  const content = `
+    <form>
+      <p>Enter your Investigation and Persuasion rolls:</p>
+      <div class="form-group">
+        <label for="investigation">Investigation:</label>
+        <input type="text" id="investigation" name="investigation" value="0">
+      </div>
+      <div class="form-group">
+        <label for="persuasion">Persuasion:</label>
+        <input type="text" id="persuasion" name="persuasion" value="0">
+      </div>
+    </form>
+  `;
+  const result = await new Promise((resolve) => {
+    new Dialog({
+      title: "Sell Magic Items",
+      content,
+      buttons: {
+        roll: {
+          label: "Roll",
+          callback: (html) => {
+            resolve({
+              investigation: parseInt(html.find("#investigation").val()) || 0,
+              persuasion: parseInt(html.find("#persuasion").val()) || 0,
+            });
+          },
+        },
+        cancel: {
+          label: "Cancel",
+        },
+      },
+    }).render(true);
+  });
+
+  const { investigation, persuasion } = result;
+  const totalRoll = investigation > 19 ? Math.floor(Math.random() * 100) + 1 + persuasion : 0;
+  let buyer = null;
+
+  for (const range of searchForBuyer) {
+    if (range.range[0] <= totalRoll && range.range[1] >= totalRoll) {
+      buyer = range.item();
+      break;
+    }
+  }
+
+  if (buyer) {
+    const messageData = {
+      content: `You have found ${buyer.item.name}! Roll Total: ${totalRoll}`,
+      speaker: ChatMessage.getSpeaker(),
+      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+      flags: { img: buyer.item.image },
+    };
+    ChatMessage.create(messageData, {});
+  } else {
+    alert(`You were unable to find a buyer. Roll Total: ${totalRoll}`);
+  }
+}
+
+async function getBuyerCommonItem() {
+  const content = `
+    <form>
+      <p>Enter your Investigation and Persuasion rolls:</p>
+      <div class="form-group">
+        <label for="investigation">Investigation:</label>
+        <input type="text" id="investigation" name="investigation" value="0">
+      </div>
+      <div class="form-group">
+        <label for="persuasion">Persuasion:</label>
+        <input type="text" id="persuasion" name="persuasion" value="0">
+      </div>
+    </form>
+  `;
+  const result = await new Promise((resolve) => {
+    new Dialog({
+      title: "Sell Magic Items",
+      content,
+      buttons: {
+        roll: {
+          label: "Roll",
+          callback: (html) => {
+            resolve({
+              investigation: parseInt(html.find("#investigation").val()) || 0,
+              persuasion: parseInt(html.find("#persuasion").val()) || 0,
+            });
+          },
+        },
+        cancel: {
+          label: "Cancel",
+        },
+      },
+    }).render(true);
+  });
+
+  const { investigation, persuasion } = result;
+  const totalRoll = investigation > 19 ? Math.floor(Math.random() * 100) + 1 + persuasion + 10 : 0;
+  const daysToFindBuyer = Math.floor(Math.random() * 4) + 1;
+  let buyer = null;
+
+  for (const range of searchForBuyer) {
+    if (range.range[0] <= totalRoll && range.range[1] >= totalRoll) {
+      buyer = range.item();
+      break;
+    }
+  }
+
+  if (buyer) {
+    const messageData = {
+      content: `You have found ${buyer.item.name}! Roll Total: ${totalRoll}. It took you ${daysToFindBuyer} days to find a buyer.`,
+      speaker: ChatMessage.getSpeaker(),
+      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+      flags: { img: buyer.item.image },
+    };
+    ChatMessage.create(messageData, {});
+  } else {
+    alert(`You were unable to find a buyer. Roll Total: ${totalRoll}`);
+  }
+}
+
+async function getBuyerUnCommonItem() {
+  const content = `
+    <form>
+      <p>Enter your Investigation and Persuasion rolls:</p>
+      <div class="form-group">
+        <label for="investigation">Investigation:</label>
+        <input type="text" id="investigation" name="investigation" value="0">
+      </div>
+      <div class="form-group">
+        <label for="persuasion">Persuasion:</label>
+        <input type="text" id="persuasion" name="persuasion" value="0">
+      </div>
+    </form>
+  `;
+  const result = await new Promise((resolve) => {
+    new Dialog({
+      title: "Sell Magic Items",
+      content,
+      buttons: {
+        roll: {
+          label: "Roll",
+          callback: (html) => {
+            resolve({
+              investigation: parseInt(html.find("#investigation").val()) || 0,
+              persuasion: parseInt(html.find("#persuasion").val()) || 0,
+            });
+          },
+        },
+        cancel: {
+          label: "Cancel",
+        },
+      },
+    }).render(true);
+  });
+
+  const { investigation, persuasion } = result;
+  const totalRoll = investigation > 19 ? Math.floor(Math.random() * 100) + 1 + persuasion : 0;
+  const daysToFindBuyer = Math.floor(Math.random() * 6) + 1;
+  let buyer = null;
+
+  for (const range of searchForBuyer) {
+    if (range.range[0] <= totalRoll && range.range[1] >= totalRoll) {
+      buyer = range.item();
+      break;
+    }
+  }
+
+  if (buyer) {
+    const messageData = {
+      content: `You have found ${buyer.item.name}! Roll Total: ${totalRoll}. It took you ${daysToFindBuyer} days to find a buyer.`,
+      speaker: ChatMessage.getSpeaker(),
+      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+      flags: { img: buyer.item.image },
+    };
+    ChatMessage.create(messageData, {});
+  } else {
+    alert(`You were unable to find a buyer. Roll Total: ${totalRoll}`);
+  }
+}
+
+async function getBuyerRareItem() {
+  const content = `
+    <form>
+      <p>Enter your Investigation and Persuasion rolls:</p>
+      <div class="form-group">
+        <label for="investigation">Investigation:</label>
+        <input type="text" id="investigation" name="investigation" value="0">
+      </div>
+      <div class="form-group">
+        <label for="persuasion">Persuasion:</label>
+        <input type="text" id="persuasion" name="persuasion" value="0">
+      </div>
+    </form>
+  `;
+  const result = await new Promise((resolve) => {
+    new Dialog({
+      title: "Sell Magic Items",
+      content,
+      buttons: {
+        roll: {
+          label: "Roll",
+          callback: (html) => {
+            resolve({
+              investigation: parseInt(html.find("#investigation").val()) || 0,
+              persuasion: parseInt(html.find("#persuasion").val()) || 0,
+            });
+          },
+        },
+        cancel: {
+          label: "Cancel",
+        },
+      },
+    }).render(true);
+  });
+
+  const { investigation, persuasion } = result;
+  const totalRoll = investigation > 19 ? Math.floor(Math.random() * 100) + 1 + persuasion - 10: 0;
+  const daysToFindBuyer = Math.floor(Math.random() * 8) + 1;
+  let buyer = null;
+
+  for (const range of searchForBuyer) {
+    if (range.range[0] <= totalRoll && range.range[1] >= totalRoll) {
+      buyer = range.item();
+      break;
+    }
+  }
+
+  if (buyer) {
+    const messageData = {
+      content: `You have found ${buyer.item.name}! Roll Total: ${totalRoll}. It took you ${daysToFindBuyer} days to find a buyer.`,
+      speaker: ChatMessage.getSpeaker(),
+      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+      flags: { img: buyer.item.image },
+    };
+    ChatMessage.create(messageData, {});
+  } else {
+    alert(`You were unable to find a buyer. Roll Total: ${totalRoll}`);
+  }
+}
+
+async function getBuyerVeryRareItem() {
+  const content = `
+    <form>
+      <p>Enter your Investigation and Persuasion rolls:</p>
+      <div class="form-group">
+        <label for="investigation">Investigation:</label>
+        <input type="text" id="investigation" name="investigation" value="0">
+      </div>
+      <div class="form-group">
+        <label for="persuasion">Persuasion:</label>
+        <input type="text" id="persuasion" name="persuasion" value="0">
+      </div>
+    </form>
+  `;
+  const result = await new Promise((resolve) => {
+    new Dialog({
+      title: "Sell Magic Items",
+      content,
+      buttons: {
+        roll: {
+          label: "Roll",
+          callback: (html) => {
+            resolve({
+              investigation: parseInt(html.find("#investigation").val()) || 0,
+              persuasion: parseInt(html.find("#persuasion").val()) || 0,
+            });
+          },
+        },
+        cancel: {
+          label: "Cancel",
+        },
+      },
+    }).render(true);
+  });
+
+  const { investigation, persuasion } = result;
+  const totalRoll = investigation > 19 ? Math.floor(Math.random() * 100) + 1 + persuasion - 20: 0;
+  const daysToFindBuyer = Math.floor(Math.random() * 10) + 1;
+  let buyer = null;
+
+  for (const range of searchForBuyer) {
+    if (range.range[0] <= totalRoll && range.range[1] >= totalRoll) {
+      buyer = range.item();
+      break;
+    }
+  }
+
+  if (buyer) {
+    const messageData = {
+      content: `You have found ${buyer.item.name}! Roll Total: ${totalRoll}. It took you ${daysToFindBuyer} days to find a buyer.`,
+      speaker: ChatMessage.getSpeaker(),
+      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+      flags: { img: buyer.item.image },
+    };
+    ChatMessage.create(messageData, {});
+  } else {
+    alert(`You were unable to find a buyer. Roll Total: ${totalRoll}`);
+  }
+}
+
 function showBlackMarketVendorButtons() {
   if (!GMOnlyDisabled && !game.user.isGM) return; {
     const rollContainer = document.getElementById("black-market-roll-container");
@@ -27851,23 +27715,23 @@ function toggleBlackMarketButtons() {
       }
   }
 }
-function rollBMVendorInventory(wealthRange) {
+function rollBlackMarketVendorInventory(trustRange) {
   let bmInventory;
-        switch (wealthRange) {
-          case "Wretched":
-            bmInventory = bMvendorInventoryWretched();
+        switch (trustRange) {
+          case "Suspicious":
+            bmInventory = bMvendorInventorySuspicious();
             break;
-          case "Poor":
-            bmInventory = bMvendorInventoryPoor();
+          case "Unfamiliar":
+            bmInventory = bMvendorInventoryUnfamiliar();
             break;
-          case "Modest":
-            bmInventory = bMvendorInventoryModest();
+          case "Familiar":
+            bmInventory = bMvendorInventoryFamiliar();
             break;
-          case "Comfortable":
-            bmInventory = bMvendorInventoryComfortable();
+          case "Friendly":
+            bmInventory = bMvendorInventoryFriendly();
             break;
-          case "Rich":
-            bmInventory = bMvendorInventoryRich();
+          case "Vetted":
+            bmInventory = bMvendorInventoryVetted();
             break;
           case "Wealthy":
             bmInventory = bMvendorInventoryWealthy();
@@ -27875,6 +27739,1266 @@ function rollBMVendorInventory(wealthRange) {
           default:
             break;
         }
-        const messageContent = generateBMvendorInventoryInventory(wealthRange, FnVSInventory);
+        const messageContent = generateBMvendorInventoryInventory(trustRange, bmInventory);
         ChatMessage.create({ content: messageContent });
       }
+
+async function bMvendorInventorySuspicious() {
+  let items = [];
+  const secondaryRoll = Math.floor(Math.random() * 100) + 1;
+    switch (true) {
+        case secondaryRoll >= 1 && secondaryRoll <= 2:
+          items = [...items, ...rollInventory(2, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(3, 10, phAdventuringGearTypes)];
+          break;
+        case secondaryRoll >= 3 && secondaryRoll <= 5:
+          items = [...items, ...rollInventory(2, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(5, 10, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 6 && secondaryRoll <= 8:
+          items = [...items, ...rollInventory(2, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(5, 15, phAdventuringGearTypes)];        
+          break;
+        case secondaryRoll >= 9 && secondaryRoll <= 11:
+          items = [...items, ...rollInventory(2, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 3, magicItemTableA),];
+          items = [...items, ...rollInventory(5, 15, phAdventuringGearTypes)];              
+          break;
+        case secondaryRoll >= 12 && secondaryRoll <= 14:
+          items = [...items, ...rollInventory(2, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 4, magicItemTableA),];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];              
+          break;
+        case secondaryRoll >= 15 && secondaryRoll <= 22:
+          items = [...items, ...rollInventory(2, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 5, magicItemTableA),];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 23 && secondaryRoll <= 30:
+          items = [...items, ...rollInventory(2, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 4, magicItemTableB)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 31 && secondaryRoll <= 38:
+          items = [...items, ...rollInventory(2, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 6, magicItemTableB)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 39 && secondaryRoll <= 46:
+          items = [...items, ...rollInventory(2, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 5, magicItemTableB)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 47 && secondaryRoll <= 52:
+          items = [...items, ...rollInventory(2, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 6, magicItemTableB)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 53 && secondaryRoll <= 58:
+          items = [...items, ...rollInventory(2, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 5, magicItemTableC)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 59 && secondaryRoll <= 63:
+          items = [...items, ...rollInventory(2, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 3, magicItemTableC)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 64 && secondaryRoll <= 68:
+          items = [...items, ...rollInventory(2, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 5, magicItemTableC)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 69:
+          items = [...items, ...rollInventory(2, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 3, magicItemTableC),];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 70:
+          items = [...items, ...rollInventory(2, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 4, magicItemTableF),];
+          items = [...items, ...rollInventory(15, 20, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 71:
+          items = [...items, ...rollInventory(2, 5, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 3, magicItemTableF)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 72:
+          items = [...items, ...rollInventory(2, 6, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 6, magicItemTableF)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 73 && secondaryRoll <= 74:
+          items = [...items, ...rollInventory(2, 6, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 4, magicItemTableF)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 75 && secondaryRoll <= 76:
+          items = [...items, ...rollInventory(2, 6, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 3, magicItemTableF)];
+          items = [...items, ...rollInventory(15, 20, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 77 && secondaryRoll <= 78:
+          items = [...items, ...rollInventory(2, 6, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 2, magicItemTableG)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 79 && secondaryRoll <= 80:
+          items = [...items, ...rollInventory(2, 6, commonPotionTypes)];
+          items = [...items, ...rollInventory(2, 3, magicItemTableG)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 81 && secondaryRoll <= 85:
+          items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+          items = [...items, ...rollInventory(2, 4, magicItemTableG)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 86 && secondaryRoll <= 90:
+          items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+          items = [...items, ...rollInventory(2, 3, magicItemTableG)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 91 && secondaryRoll <= 95:
+          items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+          items = [...items, ...rollInventory(2, 2, magicItemTableG)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 96 && secondaryRoll <= 100:
+          items = [...items, ...rollInventory(3, 7, basicPotionTypes)];
+          items = [...items, ...rollInventory(2, 3, magicItemTableH),];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        default:
+          break;
+    }
+
+const subResults = items.map((item) => {
+  if (typeof item.item === "function") {
+    const { roll, item: subResultItem } = item.item();
+    const name = subResultItem?.name;
+    const uuid = subResultItem?.uuid;
+    const image = subResultItem?.image;
+    if (Array.isArray(subResultItem)) {
+      const [minIndex, maxIndex] = subResultItem[""];
+      const itemDescriptions = subResultItem.slice(1);
+      const selectedIndex = Math.floor(Math.random() * (maxIndex - minIndex + 1) + minIndex);
+      return {
+        roll,
+        description: itemDescriptions[selectedIndex - 1],
+        name: item.name ? item.name : 'N/A',
+        uuid: item.uuid ? item.uuid : 'N/A',
+        image: item.image ? item.image : 'N/A',
+      };
+    } else {
+      return {
+        roll,
+        description: subResultItem,
+        name: name ? name : 'N/A',
+        uuid: uuid ? uuid : 'N/A',
+        image: image ? image : 'N/A',
+      };
+    }
+  } else {
+    const { description, name, uuid, image } = item;
+    return {
+      description,
+      name: name ? name : 'N/A',
+      uuid: uuid ? uuid : 'N/A',
+      image: image ? image : 'N/A',
+    };
+  }
+});
+
+const formattedItems = subResults.map(subResult => {
+  const { uuid, image } = subResult;
+  const imgTag = image ? `<img src="${image}" width="35" height="35">` : '';
+  return `<span style="display: flex; align-items: right;"><div style="margin-right: 10px;">${imgTag}</div><div>${uuid}</div></span>`;
+}).join("; ");
+
+const nonSubItems = items.filter(item => typeof item.item !== "function").map(item => {
+  const { uuid, image } = item;
+  const imgTag = image ? `<img src="${image}" width="35" height="35">` : '';
+  return `<span style="display: flex; align-items: right;"><div style="margin-right: 10px;">${imgTag}</div><div>${uuid}</div></span>`;
+});
+
+const messageContent = `Inventory:;${JSON.stringify(
+  items.map(({ uuid, image}) => ({
+  })),
+  null,
+  2
+)}<br>${formattedItems}`;
+
+if (typeof showItemsDialog === 'function') {
+  const itemBox = document.createElement("div");
+  itemBox.style.border = "1px solid black";
+  itemBox.style.padding = "10px";
+  itemBox.style.marginTop = "10px";
+  itemBox.style.textAlign = "right"; 
+  itemBox.innerHTML = messageContent;
+
+  const buttons = {
+    ok: {
+      label: "OK",
+    },
+  };
+
+  new Dialog({
+  title: "Suspicious BM Vendor Inventory",
+  content: "Suspicious BM Vendor Inventory, journal entry created.",
+  buttons: buttons,
+  default: "ok",
+}).render(true);
+
+const now = new Date();
+const year = now.getFullYear().toString().substring(2);
+const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}
+                  ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}
+                  :${now.getSeconds().toString().padStart(2, '0')}`;
+
+const journalEntryName = `BM Suspicious Inventory (${timeStamp})`;
+await JournalEntry.create({
+  name: journalEntryName,
+  content: `<div style="text-align: right">${messageContent}</div>`, 
+  permission: CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER,
+  });
+
+  if (!game.user.isGM) {
+    await ChatMessage.create({ content: messageContent});
+  } else {
+    const journalEntry = await game.journal.getName(journalEntryName);
+    if (journalEntry) {
+      journalEntry.update({ "permission.default": CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER });
+      game.socket.emit("createJournalEntry", { journalEntry });
+    }
+}}}
+                
+  window.addEventListener('load', function() {
+  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      try {
+        const div = document.createElement('div');
+        div.innerHTML = xhr.responseText;
+        document.body.appendChild(div);
+      } catch (e) {
+        console.error(e);
+          }
+      }
+      };
+      xhr.open('GET', path, true);
+      xhr.send();
+      });
+
+async function bMvendorInventoryUnfamiliar() {
+let items = [];
+const secondaryRoll = Math.floor(Math.random() * 100) + 1;
+  switch (true) {
+      case secondaryRoll >= 1 && secondaryRoll <= 2:
+        items = [...items, ...rollInventory(2, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(1, 2, magicItemTableA),];
+        items = [...items, ...rollInventory(5, 20, phAdventuringGearTypes)];
+        break;
+      case secondaryRoll >= 3 && secondaryRoll <= 5:
+        items = [...items, ...rollInventory(2, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 2, magicItemTableA),];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 6 && secondaryRoll <= 8:
+        items = [...items, ...rollInventory(2, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 3, magicItemTableA),];
+        items = [...items, ...rollInventory(5, 20, phAdventuringGearTypes)];        
+        break;
+      case secondaryRoll >= 9 && secondaryRoll <= 11:
+        items = [...items, ...rollInventory(2, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 4, magicItemTableA),];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];              
+        break;
+      case secondaryRoll >= 12 && secondaryRoll <= 14:
+        items = [...items, ...rollInventory(2, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 4, magicItemTableA),];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];              
+        break;
+      case secondaryRoll >= 15 && secondaryRoll <= 22:
+        items = [...items, ...rollInventory(2, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 5, magicItemTableA),];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 23 && secondaryRoll <= 30:
+        items = [...items, ...rollInventory(2, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 4, magicItemTableB)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 31 && secondaryRoll <= 38:
+        items = [...items, ...rollInventory(2, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 6, magicItemTableB)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 39 && secondaryRoll <= 46:
+        items = [...items, ...rollInventory(2, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 7, magicItemTableB)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 47 && secondaryRoll <= 52:
+        items = [...items, ...rollInventory(2, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 6, magicItemTableB)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 53 && secondaryRoll <= 58:
+        items = [...items, ...rollInventory(2, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(3, 5, magicItemTableC)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 59 && secondaryRoll <= 63:
+        items = [...items, ...rollInventory(2, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(4, 4, magicItemTableC)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 64 && secondaryRoll <= 68:
+        items = [...items, ...rollInventory(2, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 5, magicItemTableC)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 69:
+        items = [...items, ...rollInventory(2, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 4, magicItemTableC),];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 70:
+        items = [...items, ...rollInventory(2, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(3, 4, magicItemTableF),];
+        items = [...items, ...rollInventory(15, 20, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 71:
+        items = [...items, ...rollInventory(2, 5, basicPotionTypes)];
+        items = [...items, ...rollInventory(3, 3, magicItemTableF)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 72:
+        items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 6, magicItemTableF)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 73 && secondaryRoll <= 74:
+        items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 5, magicItemTableF)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 75 && secondaryRoll <= 76:
+        items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 4, magicItemTableF)];
+        items = [...items, ...rollInventory(15, 20, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 77 && secondaryRoll <= 78:
+        items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 3, magicItemTableG)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 79 && secondaryRoll <= 80:
+        items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 3, magicItemTableG)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 81 && secondaryRoll <= 85:
+        items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 4, magicItemTableG)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 86 && secondaryRoll <= 90:
+        items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 4, magicItemTableG)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 91 && secondaryRoll <= 95:
+        items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 3, magicItemTableG)];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      case secondaryRoll >= 96 && secondaryRoll <= 100:
+        items = [...items, ...rollInventory(3, 7, basicPotionTypes)];
+        items = [...items, ...rollInventory(2, 4, magicItemTableH),];
+        items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+        break;
+      default:
+        break;
+  }
+
+const subResults = items.map((item) => {
+  if (typeof item.item === "function") {
+    const { roll, item: subResultItem } = item.item();
+    const name = subResultItem?.name;
+    const uuid = subResultItem?.uuid;
+    const image = subResultItem?.image;
+    if (Array.isArray(subResultItem)) {
+      const [minIndex, maxIndex] = subResultItem[""];
+      const itemDescriptions = subResultItem.slice(1);
+      const selectedIndex = Math.floor(Math.random() * (maxIndex - minIndex + 1) + minIndex);
+      return {
+        roll,
+        description: itemDescriptions[selectedIndex - 1],
+        name: item.name ? item.name : 'N/A',
+        uuid: item.uuid ? item.uuid : 'N/A',
+        image: item.image ? item.image : 'N/A',
+      };
+    } else {
+      return {
+        roll,
+        description: subResultItem,
+        name: name ? name : 'N/A',
+        uuid: uuid ? uuid : 'N/A',
+        image: image ? image : 'N/A',
+      };
+    }
+  } else {
+    const { description, name, uuid, image } = item;
+    return {
+      description,
+      name: name ? name : 'N/A',
+      uuid: uuid ? uuid : 'N/A',
+      image: image ? image : 'N/A',
+    };
+  }
+});
+
+const formattedItems = subResults.map(subResult => {
+  const { uuid, image } = subResult;
+  const imgTag = image ? `<img src="${image}" width="35" height="35">` : '';
+  return `<span style="display: flex; align-items: right;"><div style="margin-right: 10px;">${imgTag}</div><div>${uuid}</div></span>`;
+}).join("; ");
+
+const nonSubItems = items.filter(item => typeof item.item !== "function").map(item => {
+  const { uuid, image } = item;
+  const imgTag = image ? `<img src="${image}" width="35" height="35">` : '';
+  return `<span style="display: flex; align-items: right;"><div style="margin-right: 10px;">${imgTag}</div><div>${uuid}</div></span>`;
+});
+
+const messageContent = `Inventory:;${JSON.stringify(
+  items.map(({ uuid, image}) => ({
+  })),
+  null,
+  2
+)}<br>${formattedItems}`;
+
+if (typeof showItemsDialog === 'function') {
+  const itemBox = document.createElement("div");
+  itemBox.style.border = "1px solid black";
+  itemBox.style.padding = "10px";
+  itemBox.style.marginTop = "10px";
+  itemBox.style.textAlign = "right"; 
+  itemBox.innerHTML = messageContent;
+
+  const buttons = {
+    ok: {
+      label: "OK",
+    },
+  };
+
+    new Dialog({
+                title: "Unfamiliar BM Vendor Inventory",
+                content: "Unfamiliar BM Vendor Inventory, journal entry created.",
+                buttons: buttons,
+                default: "ok",
+              }).render(true);
+            
+const now = new Date();
+const year = now.getFullYear().toString().substring(2);
+const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}
+                  ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}
+                  :${now.getSeconds().toString().padStart(2, '0')}`;
+            
+            const journalEntryName = `Unfamiliar BM Inventory (${timeStamp})`;
+await JournalEntry.create({
+  name: journalEntryName,
+  content: `<div style="text-align: right">${messageContent}</div>`, 
+  permission: CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER,
+  });
+
+  if (!game.user.isGM) {
+    await ChatMessage.create({ content: messageContent});
+  } else {
+    const journalEntry = await game.journal.getName(journalEntryName);
+    if (journalEntry) {
+      journalEntry.update({ "permission.default": CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER });
+      game.socket.emit("createJournalEntry", { journalEntry });
+    }
+}}}
+                
+  window.addEventListener('load', function() {
+  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      try {
+        const div = document.createElement('div');
+        div.innerHTML = xhr.responseText;
+        document.body.appendChild(div);
+      } catch (e) {
+        console.error(e);
+          }
+      }
+      };
+      xhr.open('GET', path, true);
+      xhr.send();
+      });
+
+    async function bMvendorInventoryFamiliar() {
+      let items = [];
+      const secondaryRoll = Math.floor(Math.random() * 100) + 1;
+        switch (true) {
+            case secondaryRoll >= 1 && secondaryRoll <= 2:
+              items = [...items, ...rollInventory(3, 5, basicPotionTypes)];
+              items = [...items, ...rollInventory(1, 1, magicItemTableA),];
+              items = [...items, ...rollInventory(5, 20, phAdventuringGearTypes)];
+              break;
+            case secondaryRoll >= 3 && secondaryRoll <= 5:
+              items = [...items, ...rollInventory(3, 5, basicPotionTypes)];
+              items = [...items, ...rollInventory(1, 2, magicItemTableA),];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+              break;
+            case secondaryRoll >= 6 && secondaryRoll <= 8:
+              items = [...items, ...rollInventory(3, 5, basicPotionTypes)];
+              items = [...items, ...rollInventory(1, 3, magicItemTableA),];
+              items = [...items, ...rollInventory(5, 20, phAdventuringGearTypes)];        
+              break;
+            case secondaryRoll >= 9 && secondaryRoll <= 11:
+              items = [...items, ...rollInventory(3, 5, basicPotionTypes)];
+              items = [...items, ...rollInventory(2, 4, magicItemTableA),];
+              items = [...items, ...rollInventory(1, 2, magicItemTableB)];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];              
+              break;
+            case secondaryRoll >= 12 && secondaryRoll <= 14:
+              items = [...items, ...rollInventory(3, 5, basicPotionTypes)];
+              items = [...items, ...rollInventory(1, 4, magicItemTableA),];
+              items = [...items, ...rollInventory(1, 3, magicItemTableB)];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];              
+              break;
+            case secondaryRoll >= 15 && secondaryRoll <= 22:
+              items = [...items, ...rollInventory(3, 5, basicPotionTypes)];
+              items = [...items, ...rollInventory(1, 6, magicItemTableA),];
+              items = [...items, ...rollInventory(1, 4, magicItemTableB)];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+              break;
+            case secondaryRoll >= 23 && secondaryRoll <= 30:
+              items = [...items, ...rollInventory(3, 5, basicPotionTypes)];
+              items = [...items, ...rollInventory(2, 8, magicItemTableB)];
+              items = [...items, ...rollInventory(1, 1, magicItemTableC)];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+              break;
+            case secondaryRoll >= 31 && secondaryRoll <= 38:
+              items = [...items, ...rollInventory(3, 5, basicPotionTypes)];
+              items = [...items, ...rollInventory(4, 8, magicItemTableB)];
+              items = [...items, ...rollInventory(1, 2, magicItemTableC)];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+              break;
+            case secondaryRoll >= 39 && secondaryRoll <= 46:
+              items = [...items, ...rollInventory(3, 5, basicPotionTypes)];
+              items = [...items, ...rollInventory(1, 9, magicItemTableB)];
+              items = [...items, ...rollInventory(1, 3, magicItemTableC)];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+              break;
+            case secondaryRoll >= 47 && secondaryRoll <= 52:
+              items = [...items, ...rollInventory(3, 5, basicPotionTypes)];
+              items = [...items, ...rollInventory(2, 8, magicItemTableB)];
+              items = [...items, ...rollInventory(1, 4, magicItemTableC)];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+              break;
+            case secondaryRoll >= 53 && secondaryRoll <= 58:
+              items = [...items, ...rollInventory(3, 5, basicPotionTypes)];
+              items = [...items, ...rollInventory(3, 6, magicItemTableC)];
+              items = [...items, ...rollInventory(1, 1, magicItemTableD),];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+              break;
+            case secondaryRoll >= 59 && secondaryRoll <= 63:
+              items = [...items, ...rollInventory(3, 5, basicPotionTypes)];
+              items = [...items, ...rollInventory(4, 5, magicItemTableC)];
+              items = [...items, ...rollInventory(1, 2, magicItemTableD),];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+              break;
+            case secondaryRoll >= 64 && secondaryRoll <= 68:
+              items = [...items, ...rollInventory(3, 5, basicPotionTypes)];
+              items = [...items, ...rollInventory(1, 6, magicItemTableC)];
+              items = [...items, ...rollInventory(1, 3, magicItemTableD),];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+              break;
+            case secondaryRoll >= 69:
+              items = [...items, ...rollInventory(3, 5, basicPotionTypes)];
+              items = [...items, ...rollInventory(2, 5, magicItemTableC),];
+              items = [...items, ...rollInventory(1, 4, magicItemTableD),];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+              break;
+            case secondaryRoll >= 70:
+              items = [...items, ...rollInventory(3, 5, basicPotionTypes)];
+              items = [...items, ...rollInventory(3, 4, magicItemTableD),];
+              items = [...items, ...rollInventory(1, 1, magicItemTableE)];
+              items = [...items, ...rollInventory(15, 20, phAdventuringGearTypes)];      
+              break;
+            case secondaryRoll >= 71:
+              items = [...items, ...rollInventory(3, 5, basicPotionTypes)];
+              items = [...items, ...rollInventory(3, 3, magicItemTableD)];
+              items = [...items, ...rollInventory(1, 2, magicItemTableE)];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+              break;
+            case secondaryRoll >= 72:
+              items = [...items, ...rollInventory(3, 6, basicPotionTypes)];
+              items = [...items, ...rollInventory(1, 6, magicItemTableD)];
+              items = [...items, ...rollInventory(1, 3, magicItemTableE)];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+              break;
+            case secondaryRoll >= 73 && secondaryRoll <= 74:
+              items = [...items, ...rollInventory(3, 6, basicPotionTypes)];
+              items = [...items, ...rollInventory(2, 5, magicItemTableD)];
+              items = [...items, ...rollInventory(1, 4, magicItemTableE)];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+              break;
+            case secondaryRoll >= 75 && secondaryRoll <= 76:
+              items = [...items, ...rollInventory(3, 6, basicPotionTypes)];
+              items = [...items, ...rollInventory(1, 4, magicItemTableE)];
+              items = [...items, ...rollInventory(1, 1, magicItemTableF)];
+              items = [...items, ...rollInventory(15, 20, phAdventuringGearTypes)];      
+              break;
+            case secondaryRoll >= 77 && secondaryRoll <= 78:
+              items = [...items, ...rollInventory(3, 6, basicPotionTypes)];
+              items = [...items, ...rollInventory(2, 4, magicItemTableE)];
+              items = [...items, ...rollInventory(1, 2, magicItemTableF)];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+              break;
+            case secondaryRoll >= 79 && secondaryRoll <= 80:
+              items = [...items, ...rollInventory(3, 6, basicPotionTypes)];
+              items = [...items, ...rollInventory(3, 4, magicItemTableE)];
+              items = [...items, ...rollInventory(1, 3, magicItemTableF)];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+              break;
+            case secondaryRoll >= 81 && secondaryRoll <= 85:
+              items = [...items, ...rollInventory(3, 6, basicPotionTypes)];
+              items = [...items, ...rollInventory(1, 1, magicItemTableG)];
+              items = [...items, ...rollInventory(2, 4, magicItemTableF)];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+              break;
+            case secondaryRoll >= 86 && secondaryRoll <= 90:
+              items = [...items, ...rollInventory(3, 6, basicPotionTypes)];
+              items = [...items, ...rollInventory(1, 2, magicItemTableG)];
+              items = [...items, ...rollInventory(3, 4, magicItemTableF)];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+              break;
+            case secondaryRoll >= 91 && secondaryRoll <= 95:
+              items = [...items, ...rollInventory(3, 6, basicPotionTypes)];
+              items = [...items, ...rollInventory(3, 3, magicItemTableG)];
+              items = [...items, ...rollInventory(1, 2, magicItemTableH),];
+              items = [...items, ...rollInventory(1, 1, magicItemTableI),];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+              break;
+            case secondaryRoll >= 96 && secondaryRoll <= 100:
+              items = [...items, ...rollInventory(4, 7, basicPotionTypes)];
+              items = [...items, ...rollInventory(1, 2, magicItemTableG)];
+              items = [...items, ...rollInventory(2, 4, magicItemTableH),];
+              items = [...items, ...rollInventory(1, 2, magicItemTableI),];
+              items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+              break;
+            default:
+              break;
+        }
+
+const subResults = items.map((item) => {
+  if (typeof item.item === "function") {
+    const { roll, item: subResultItem } = item.item();
+    const name = subResultItem?.name;
+    const uuid = subResultItem?.uuid;
+    const image = subResultItem?.image;
+    if (Array.isArray(subResultItem)) {
+      const [minIndex, maxIndex] = subResultItem[""];
+      const itemDescriptions = subResultItem.slice(1);
+      const selectedIndex = Math.floor(Math.random() * (maxIndex - minIndex + 1) + minIndex);
+      return {
+        roll,
+        description: itemDescriptions[selectedIndex - 1],
+        name: item.name ? item.name : 'N/A',
+        uuid: item.uuid ? item.uuid : 'N/A',
+        image: item.image ? item.image : 'N/A',
+      };
+    } else {
+      return {
+        roll,
+        description: subResultItem,
+        name: name ? name : 'N/A',
+        uuid: uuid ? uuid : 'N/A',
+        image: image ? image : 'N/A',
+      };
+    }
+  } else {
+    const { description, name, uuid, image } = item;
+    return {
+      description,
+      name: name ? name : 'N/A',
+      uuid: uuid ? uuid : 'N/A',
+      image: image ? image : 'N/A',
+    };
+  }
+});
+
+const formattedItems = subResults.map(subResult => {
+  const { uuid, image } = subResult;
+  const imgTag = image ? `<img src="${image}" width="35" height="35">` : '';
+  return `<span style="display: flex; align-items: right;"><div style="margin-right: 10px;">${imgTag}</div><div>${uuid}</div></span>`;
+}).join("; ");
+
+const nonSubItems = items.filter(item => typeof item.item !== "function").map(item => {
+  const { uuid, image } = item;
+  const imgTag = image ? `<img src="${image}" width="35" height="35">` : '';
+  return `<span style="display: flex; align-items: right;"><div style="margin-right: 10px;">${imgTag}</div><div>${uuid}</div></span>`;
+});
+
+const messageContent = `Inventory:;${JSON.stringify(
+  items.map(({ uuid, image}) => ({
+  })),
+  null,
+  2
+)}<br>${formattedItems}`;
+
+if (typeof showItemsDialog === 'function') {
+  const itemBox = document.createElement("div");
+  itemBox.style.border = "1px solid black";
+  itemBox.style.padding = "10px";
+  itemBox.style.marginTop = "10px";
+  itemBox.style.textAlign = "right"; 
+  itemBox.innerHTML = messageContent;
+
+  const buttons = {
+    ok: {
+      label: "OK",
+    },
+  };
+
+    new Dialog({
+            title: "Familiar BM Vendor Inventory",
+            content: "Familiar BM Vendor Inventory, journal entry created.",
+            buttons: buttons,
+            default: "ok",
+          }).render(true);
+        
+const now = new Date();
+const year = now.getFullYear().toString().substring(2);
+const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}
+                  ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}
+                  :${now.getSeconds().toString().padStart(2, '0')}`;
+
+        
+        const journalEntryName = `Familiar BM Inventory (${timeStamp})`;
+        await JournalEntry.create({
+          name: journalEntryName,
+          content: `<div style="text-align: right">${messageContent}</div>`, 
+          permission: CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER,
+          });
+        
+          if (!game.user.isGM) {
+            await ChatMessage.create({ content: messageContent});
+          } else {
+            const journalEntry = await game.journal.getName(journalEntryName);
+            if (journalEntry) {
+              journalEntry.update({ "permission.default": CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER });
+              game.socket.emit("createJournalEntry", { journalEntry });
+            }
+        }}}
+                        
+          window.addEventListener('load', function() {
+          const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+          const xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+              try {
+                const div = document.createElement('div');
+                div.innerHTML = xhr.responseText;
+                document.body.appendChild(div);
+              } catch (e) {
+                console.error(e);
+                  }
+              }
+              };
+              xhr.open('GET', path, true);
+              xhr.send();
+              });
+
+async function bMvendorInventoryFriendly() {
+  let items = [];
+  const secondaryRoll = Math.floor(Math.random() * 100) + 1;
+    switch (true) {
+        case secondaryRoll >= 1 && secondaryRoll <= 2:
+          items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+          items = [...items, ...rollInventory(1, 1, magicItemTableA),];
+          items = [...items, ...rollInventory(1, 1, magicItemTableB),];
+          items = [...items, ...rollInventory(5, 20, phAdventuringGearTypes)];
+          break;
+        case secondaryRoll >= 3 && secondaryRoll <= 5:
+          items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+          items = [...items, ...rollInventory(1, 2, magicItemTableA),];
+          items = [...items, ...rollInventory(1, 2, magicItemTableB),];
+          items = [...items, ...rollInventory(1, 1, magicItemTableC)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 6 && secondaryRoll <= 8:
+          items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+          items = [...items, ...rollInventory(1, 3, magicItemTableA),];
+          items = [...items, ...rollInventory(1, 3, magicItemTableB),];
+          items = [...items, ...rollInventory(1, 2, magicItemTableC)];
+          items = [...items, ...rollInventory(5, 20, phAdventuringGearTypes)];        
+          break;
+        case secondaryRoll >= 9 && secondaryRoll <= 11:
+          items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+          items = [...items, ...rollInventory(2, 4, magicItemTableA),];
+          items = [...items, ...rollInventory(2, 4, magicItemTableB),];
+          items = [...items, ...rollInventory(1, 2, magicItemTableC)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];              
+          break;
+        case secondaryRoll >= 12 && secondaryRoll <= 14:
+          items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+          items = [...items, ...rollInventory(1, 4, magicItemTableA),];
+          items = [...items, ...rollInventory(1, 6, magicItemTableB),];
+          items = [...items, ...rollInventory(1, 3, magicItemTableC)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];              
+          break;
+        case secondaryRoll >= 15 && secondaryRoll <= 22:
+          items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+          items = [...items, ...rollInventory(1, 6, magicItemTableA),];
+          items = [...items, ...rollInventory(1, 8, magicItemTableB),];
+          items = [...items, ...rollInventory(1, 4, magicItemTableC)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 23 && secondaryRoll <= 30:
+          items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+          items = [...items, ...rollInventory(2, 8, magicItemTableC)];
+          items = [...items, ...rollInventory(1, 1, magicItemTableD)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 31 && secondaryRoll <= 38:
+          items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+          items = [...items, ...rollInventory(4, 8, magicItemTableC)];
+          items = [...items, ...rollInventory(1, 2, magicItemTableD)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 39 && secondaryRoll <= 46:
+          items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+          items = [...items, ...rollInventory(1, 9, magicItemTableC)];
+          items = [...items, ...rollInventory(1, 3, magicItemTableD)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 47 && secondaryRoll <= 52:
+          items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+          items = [...items, ...rollInventory(2, 8, magicItemTableC)];
+          items = [...items, ...rollInventory(1, 4, magicItemTableD)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 53 && secondaryRoll <= 58:
+          items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+          items = [...items, ...rollInventory(3, 6, magicItemTableD)];
+          items = [...items, ...rollInventory(1, 1, magicItemTableE),];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 59 && secondaryRoll <= 63:
+          items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+          items = [...items, ...rollInventory(4, 5, magicItemTableD)];
+          items = [...items, ...rollInventory(1, 2, magicItemTableE),];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 64 && secondaryRoll <= 68:
+          items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+          items = [...items, ...rollInventory(1, 6, magicItemTableD)];
+          items = [...items, ...rollInventory(1, 3, magicItemTableE),];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 69:
+          items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+          items = [...items, ...rollInventory(2, 5, magicItemTableD),];
+          items = [...items, ...rollInventory(1, 4, magicItemTableE),];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 70:
+          items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+          items = [...items, ...rollInventory(3, 4, magicItemTableE),];
+          items = [...items, ...rollInventory(1, 1, magicItemTableF)];
+          items = [...items, ...rollInventory(15, 20, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 71:
+          items = [...items, ...rollInventory(1, 5, basicPotionTypes)];
+          items = [...items, ...rollInventory(3, 3, magicItemTableE)];
+          items = [...items, ...rollInventory(1, 2, magicItemTableF)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 72:
+          items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+          items = [...items, ...rollInventory(1, 6, magicItemTableE)];
+          items = [...items, ...rollInventory(1, 3, magicItemTableF)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 73 && secondaryRoll <= 74:
+          items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+          items = [...items, ...rollInventory(2, 5, magicItemTableE)];
+          items = [...items, ...rollInventory(1, 4, magicItemTableF)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 75 && secondaryRoll <= 76:
+          items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+          items = [...items, ...rollInventory(1, 4, magicItemTableF)];
+          items = [...items, ...rollInventory(1, 4, magicItemTableG)];
+          items = [...items, ...rollInventory(1, 1, magicItemTableH)];
+          items = [...items, ...rollInventory(15, 20, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 77 && secondaryRoll <= 78:
+          items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+          items = [...items, ...rollInventory(2, 4, magicItemTableF)];
+          items = [...items, ...rollInventory(2, 4, magicItemTableG)];
+          items = [...items, ...rollInventory(1, 2, magicItemTableH)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 79 && secondaryRoll <= 80:
+          items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+          items = [...items, ...rollInventory(3, 4, magicItemTableF)];
+          items = [...items, ...rollInventory(2, 4, magicItemTableG)];
+          items = [...items, ...rollInventory(1, 3, magicItemTableH)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 81 && secondaryRoll <= 85:
+          items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+          items = [...items, ...rollInventory(2, 4, magicItemTableF)];
+          items = [...items, ...rollInventory(3, 4, magicItemTableG)];
+          items = [...items, ...rollInventory(1, 4, magicItemTableH)];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 86 && secondaryRoll <= 90:
+          items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+          items = [...items, ...rollInventory(3, 4, magicItemTableH)];
+          items = [...items, ...rollInventory(1, 1, magicItemTableI),];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 91 && secondaryRoll <= 95:
+          items = [...items, ...rollInventory(2, 6, basicPotionTypes)];
+          items = [...items, ...rollInventory(3, 3, magicItemTableH)];
+          items = [...items, ...rollInventory(2, 2, magicItemTableI),];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        case secondaryRoll >= 96 && secondaryRoll <= 100:
+          items = [...items, ...rollInventory(3, 7, basicPotionTypes)];
+          items = [...items, ...rollInventory(2, 4, magicItemTableH),];
+          items = [...items, ...rollInventory(2, 4, magicItemTableI),];
+          items = [...items, ...rollInventory(10, 15, phAdventuringGearTypes)];      
+          break;
+        default:
+          break;
+    }
+
+const subResults = items.map((item) => {
+  if (typeof item.item === "function") {
+    const { roll, item: subResultItem } = item.item();
+    const name = subResultItem?.name;
+    const uuid = subResultItem?.uuid;
+    const image = subResultItem?.image;
+    if (Array.isArray(subResultItem)) {
+      const [minIndex, maxIndex] = subResultItem[""];
+      const itemDescriptions = subResultItem.slice(1);
+      const selectedIndex = Math.floor(Math.random() * (maxIndex - minIndex + 1) + minIndex);
+      return {
+        roll,
+        description: itemDescriptions[selectedIndex - 1],
+        name: item.name ? item.name : 'N/A',
+        uuid: item.uuid ? item.uuid : 'N/A',
+        image: item.image ? item.image : 'N/A',
+      };
+    } else {
+      return {
+        roll,
+        description: subResultItem,
+        name: name ? name : 'N/A',
+        uuid: uuid ? uuid : 'N/A',
+        image: image ? image : 'N/A',
+      };
+    }
+  } else {
+    const { description, name, uuid, image } = item;
+    return {
+      description,
+      name: name ? name : 'N/A',
+      uuid: uuid ? uuid : 'N/A',
+      image: image ? image : 'N/A',
+    };
+  }
+});
+
+const formattedItems = subResults.map(subResult => {
+  const { uuid, image } = subResult;
+  const imgTag = image ? `<img src="${image}" width="35" height="35">` : '';
+  return `<span style="display: flex; align-items: right;"><div style="margin-right: 10px;">${imgTag}</div><div>${uuid}</div></span>`;
+}).join("; ");
+
+const nonSubItems = items.filter(item => typeof item.item !== "function").map(item => {
+  const { uuid, image } = item;
+  const imgTag = image ? `<img src="${image}" width="35" height="35">` : '';
+  return `<span style="display: flex; align-items: right;"><div style="margin-right: 10px;">${imgTag}</div><div>${uuid}</div></span>`;
+});
+
+const messageContent = `Inventory:;${JSON.stringify(
+  items.map(({ uuid, image}) => ({
+  })),
+  null,
+  2
+)}<br>${formattedItems}`;
+
+if (typeof showItemsDialog === 'function') {
+  const itemBox = document.createElement("div");
+  itemBox.style.border = "1px solid black";
+  itemBox.style.padding = "10px";
+  itemBox.style.marginTop = "10px";
+  itemBox.style.textAlign = "right"; 
+  itemBox.innerHTML = messageContent;
+
+  const buttons = {
+    ok: {
+      label: "OK",
+    },
+  };
+
+    new Dialog({
+        title: "Friendly BM Vendor Inventory",
+        content: "Friendly BM Vendor Inventory journal entry created.",
+        buttons: buttons,
+        default: "ok",
+      }).render(true);
+    
+const now = new Date();
+const year = now.getFullYear().toString().substring(2);
+const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}
+                  ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}
+                  :${now.getSeconds().toString().padStart(2, '0')}`;
+                
+    const journalEntryName = `Friendly BM Inventory (${timeStamp})`;
+    await JournalEntry.create({
+      name: journalEntryName,
+      content: `<div style="text-align: right">${messageContent}</div>`, 
+      permission: CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER,
+      });
+    
+      if (!game.user.isGM) {
+        await ChatMessage.create({ content: messageContent});
+      } else {
+        const journalEntry = await game.journal.getName(journalEntryName);
+        if (journalEntry) {
+          journalEntry.update({ "permission.default": CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER });
+          game.socket.emit("createJournalEntry", { journalEntry });
+        }
+    }}}
+                    
+      window.addEventListener('load', function() {
+      const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          try {
+            const div = document.createElement('div');
+            div.innerHTML = xhr.responseText;
+            document.body.appendChild(div);
+          } catch (e) {
+            console.error(e);
+              }
+          }
+          };
+          xhr.open('GET', path, true);
+          xhr.send();
+          });
+
+const randomVendorTier = [
+    { range: [1, 20], item: () => {
+      const WretchedTier = [
+      { name: "Wretched",
+        uuid: "Wretched",
+        image: "icons/skills/social/trading-injustice-scale-gray.webp"
+      }, 
+    ];
+    const randomRoll = Math.floor(Math.random() * 100) + 1;
+    const randomIndex = Math.floor(Math.random() * WretchedTier.length);
+    return { 
+      roll: randomRoll,
+      item: {
+        name: WretchedTier[randomIndex].name,
+        uuid: WretchedTier[randomIndex].uuid,
+        image: WretchedTier[randomIndex].image}
+      }; 
+      }
+      },
+    { range: [21, 40], item: () => {
+      const poorTier = [
+      { name: "Poor",
+        uuid: "Poor",
+        image: "icons/skills/social/trading-injustice-scale-gray.webp"
+      }, 
+    ];
+    const randomRoll = Math.floor(Math.random() * 100) + 1;
+    const randomIndex = Math.floor(Math.random() * poorTier.length);
+    return { 
+      roll: randomRoll,
+      item: {
+        name: poorTier[randomIndex].name,
+        uuid: poorTier[randomIndex].uuid,
+        image: poorTier[randomIndex].image}
+      }; 
+      }
+      },
+    { range: [41, 80], item: () => {
+      const modestTier = [
+      { name: "Modest",
+        uuid: "Modest",
+        image: "icons/skills/social/diplomacy-unity-alliance.webp"
+      }, 
+    ];
+    const randomRoll = Math.floor(Math.random() * 100) + 1;
+    const randomIndex = Math.floor(Math.random() * modestTier.length);
+    return { 
+      roll: randomRoll,
+      item: {
+        name: modestTier[randomIndex].name,
+        uuid: modestTier[randomIndex].uuid,
+        image: modestTier[randomIndex].image}
+      }; 
+      }
+      },
+    { range: [81, 90], item: () => {
+      const comfortableTier = [
+      { name: "Comfortable",
+        uuid: "Comfortable",
+        image: "icons/environment/people/commoner.webp"
+      }, 
+    ];
+    const randomRoll = Math.floor(Math.random() * 100) + 1;
+    const randomIndex = Math.floor(Math.random() * comfortableTier.length);
+    return { 
+      roll: randomRoll,
+      item: {
+        name: comfortableTier[randomIndex].name,
+        uuid: comfortableTier[randomIndex].uuid,
+        image: comfortableTier[randomIndex].image}
+      }; 
+      }
+      },
+          { range: [91, 100], item: () => {
+      const richTier = [
+      { name: "Rich",
+        uuid: "Rich",
+        image: "icons/environment/settlement/wagon-black.webp"
+      }, 
+    ];
+    const randomRoll = Math.floor(Math.random() * 100) + 1;
+    const randomIndex = Math.floor(Math.random() * richTier.length);
+    return { 
+      roll: randomRoll,
+      item: {
+        name: richTier[randomIndex].name,
+        uuid: richTier[randomIndex].uuid,
+        image: richTier[randomIndex].image}
+      }; 
+      }
+      },
+    ]
+
+async function rollVendorTier() {
+  const randomVendorTier = [
+    { range: [1, 20], item: () => {
+      const WretchedTier = [
+        { name: "Wretched",
+          uuid: "Wretched",
+          image: "icons/skills/social/trading-injustice-scale-gray.webp"
+        }, 
+      ];
+      const randomRoll = Math.floor(Math.random() * 100) + 1;
+      const randomIndex = Math.floor(Math.random() * WretchedTier.length);
+      return { 
+        roll: randomRoll,
+        item: {
+          name: WretchedTier[randomIndex].name,
+          uuid: WretchedTier[randomIndex].uuid,
+          image: WretchedTier[randomIndex].image}
+        }; 
+      }
+    },
+    { range: [21, 40], item: () => {
+      const poorTier = [
+        { name: "Poor",
+          uuid: "Poor",
+          image: "icons/skills/social/trading-injustice-scale-gray.webp"
+        }, 
+      ];
+      const randomRoll = Math.floor(Math.random() * 100) + 1;
+      const randomIndex = Math.floor(Math.random() * poorTier.length);
+      return { 
+        roll: randomRoll,
+        item: {
+          name: poorTier[randomIndex].name,
+          uuid: poorTier[randomIndex].uuid,
+          image: poorTier[randomIndex].image}
+        }; 
+      }
+    },
+    { range: [41, 80], item: () => {
+      const modestTier = [
+        { name: "Modest",
+          uuid: "Modest",
+          image: "icons/skills/social/diplomacy-unity-alliance.webp"
+        }, 
+      ];
+      const randomRoll = Math.floor(Math.random() * 100) + 1;
+      const randomIndex = Math.floor(Math.random() * modestTier.length);
+      return { 
+        roll: randomRoll,
+        item: {
+          name: modestTier[randomIndex].name,
+          uuid: modestTier[randomIndex].uuid,
+          image: modestTier[randomIndex].image}
+        }; 
+      }
+    },
+    { range: [81, 90], item: () => {
+      const comfortableTier = [
+        { name: "Comfortable",
+          uuid: "Comfortable",
+          image: "icons/environment/people/commoner.webp"
+        }, 
+      ];
+      const randomRoll = Math.floor(Math.random() * 100) + 1;
+      const randomIndex = Math.floor(Math.random() * comfortableTier.length);
+      return { 
+        roll: randomRoll,
+        item: {
+          name: comfortableTier[randomIndex].name,
+          uuid: comfortableTier[randomIndex].uuid,
+          image: comfortableTier[randomIndex].image}
+        }; 
+      }
+    },
+    { range: [91, 100], item: () => {
+      const richTier = [
+        { name: "Rich",
+          uuid: "Rich",
+          image: "icons/environment/settlement/wagon-black.webp"
+        }, 
+      ];
+      const randomRoll = Math.floor(Math.random() * 100) + 1;
+      const randomIndex = Math.floor(Math.random() * richTier.length);
+      return { 
+        roll: randomRoll,
+        item: {
+          name: richTier[randomIndex].name,
+          uuid: richTier[randomIndex].uuid,
+          image: richTier[randomIndex].image}
+        }; 
+      }
+    },
+  ];
+
+  const roll = Math.floor(Math.random() * 100) + 1;
+  const selected = randomVendorTier.find((tier) => {
+    return tier.range[0] <= roll && roll <= tier.range[1];
+  });
+  const item = selected.item();
+
+const messageContent = `${item.item.name}`;
+  await ChatMessage.create({
+    content: messageContent,
+    speaker: { alias: "Vendor Roller" },
+  });
+}

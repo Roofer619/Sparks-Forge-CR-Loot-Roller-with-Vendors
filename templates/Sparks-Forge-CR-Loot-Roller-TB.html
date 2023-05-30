@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Sparks Forge CR Loot Roller TB</title>
+    <title>Sparks Forge CR Loot Roller with Vendors</title>
     <style>
-      #primary-roller-button {
-        width: 40px;
-        height: 40px;
-        position: fixed;
-        bottom: 48%;
-        left: 15px;
-        transform: translateY(-60%);
-      }
+#primary-roller-button {
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  bottom: 0%;
+  right: 50%;
+  transform: translateY(-60%);
+}
 
-      #loot-roller-button {
-        width: 85px;
-        height: 40px;
-        position: fixed;
-        bottom: 5%;
-        left: 230px;
-        transform: translateY(-60%);
-      }
+#loot-roller-button {
+  width: 85px;
+  height: 40px;
+  position: fixed;
+  bottom: 5%;
+  left: 230px;
+  transform: translateY(-60%);
+}
 
 #individual-buttons-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   position: fixed;
-  top: 45%;
-  left: 75px;
+  top: 75%;
+  left: 230px;
 }
 
 #hoard-buttons-container {
@@ -37,9 +37,10 @@
   flex-direction: column;
   align-items: center;
   position: fixed;
-  top: 49%;
-  left: 75px;
+  top: 70%;
+  left: 230px;
 }
+
 #individual-roll-container {
   width: 100px;
   height: 100px;
@@ -62,75 +63,85 @@
   top: 0;
 }
 
-      #vendor-roller-button {
-        width: 100px;
-        height: 40px;
-        position: fixed;
-        bottom: 5%;
-        left: 310px;
-        transform: translateY(-60%);
-      }
+#vendor-roller-button {
+  width: 100px;
+  height: 40px;
+  position: fixed;
+  bottom: 5%;
+  left: 320px;
+  transform: translateY(-60%);
+}
 
-      #vendor-buttons-container {
-        width: 185px;
-        height: 200px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: fixed;
-        top: 25%;
-        left: 115px; 
-      }
+#vendor-buttons-container {
+  width: 185px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 69%;
+  left: 450px; 
+}
 
-      #gs-vendor-roll-container {
-      width: 175px;
-      height: 100px;
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      left: 185px;
-      right: calc(100% + 15px);
-      top: 0;
-      }
+#gs-vendor-roll-container {
+width: 175px;
+height: 100px;
+position: absolute;
+display: flex;
+flex-direction: column;
+left: 185px;
+right: calc(100% + 15px);
+top: 0;
+}
 
-      #Apothicary-vendor-roll-container {
-        width: 175px;
-      height: 100px;
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      left: 185px;
-      right: calc(100% + 15px);
-      top: 0;
-      }
+#Apothicary-vendor-roll-container {
+width: 175px;
+height: 100px;
+position: absolute;
+display: flex;
+flex-direction: column;
+left: 185px;
+right: calc(100% + 15px);
+top: 0;
+}
 
-      #Weapons-and-armor-vendor-roll-container {
-      width: 175px;
-      height: 100px;
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      left: 185px;
-      right: calc(100% + 15px);
-      top: 0;
-      }
+#Weapons-and-armor-vendor-roll-container {
+width: 175px;
+height: 100px;
+position: absolute;
+display: flex;
+flex-direction: column;
+left: 185px;
+right: calc(100% + 15px);
+top: 0;
+}
 
-      #black-market-roll-container {
-        width: 175px;
-      height: 100px;
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      left: 185px;
-      right: calc(100% + 15px);
-      top: 0;
-      }
+#black-market-roll-container {
+width: 175px;
+height: 100px;
+position: absolute;
+display: flex;
+flex-direction: column;
+left: 185px;
+right: calc(100% + 15px);
+top: 0;
+}
 
-      #individual-buttons-container-button, #hoard-buttons-container-button, #vendor-other-buttons-container, #vendor-buttons-container 
-       {
-        margin-top: 10px;
-      }
-      
+#sell-magic-item-roll-container {
+width: 190px;
+height: 100px;
+position: absolute;
+display: flex;
+flex-direction: column;
+left: 185px;
+right: calc(100% + 15px);
+top: 0;
+}
+
+#individual-buttons-container-button, #hoard-buttons-container-button, #vendor-other-buttons-container, #vendor-buttons-container 
+ {
+  margin-top: 10px;
+}
 
     </style>
   </head>
@@ -140,7 +151,19 @@
 <button id="loot-roller-button" onclick="toggleButtons()">Loot Roller</button>
   <div id="button-container" style="display: none;">
     <div id="individual-buttons-container">
-<button onclick="showIndividualButtons()">Individual Loot</button>
+<button onclick="showIndividualButtons()" title="An Individual Treasure table helps you randomly determine how much treasure one creature carries 
+on its person. If a monster has no interest in amassing treasure, you can use this table to determine 
+the incidental treasure left behind by the monsters victims.
+
+Use the Individual Treasure table that corresponds to the monsters challenge rating. Roll a d100, and 
+read the result across to determine how many coins of each type the monster carries. The table also 
+includes the average result in parentheses, should you wish to forgo another roll and save time. To 
+determine the total amount of individual treasure for a group of similar creatures, you can save time 
+by rolling once and multiplying the result by the number of creatures in the group.
+
+If it doesnt make sense for a monster to carry a large pile of coins, you can convert the coins into 
+gemstones or art objects of equal value.
+The Dungeon Master's Guide (DMG) Ch. 7">Individual Loot</button>
 <div id="individual-roll-container" style="display: none;">
   <button onclick="rollIndividualTreasure('0-4')">CR 0-4</button>
   <button onclick="rollIndividualTreasure('5-10')">CR 5-10</button>
@@ -149,7 +172,19 @@
 </div>
 </div>
     <div id="hoard-buttons-container">
-      <button onclick="showHoardButtons()">Hoard Loot</button>        
+      <button onclick="showHoardButtons()" title="A Treasure Hoard table helps you randomly determine the contents of a large cache of treasure, 
+the accumulated wealth of a large group of creatures (such as an orc tribe or a hobgoblin army), 
+the belongings of a single powerful creature that likes to hoard treasure (such as a dragon), or 
+the reward bestowed upon a party after completing a quest for a benefactor. You can also split up 
+a treasure hoard so that the adventurers dont find or receive it all at once.
+
+When determining the contents of a hoard belonging to one monster, use the table that corresponds 
+to that monsters challenge rating. When rolling to determine a treasure hoard belonging to a large 
+group of monsters, use the challenge rating of the monster that leads the group. If the hoard belongs 
+to no one, use the challenge rating of the monster that presides over the dungeon or lair you are 
+stocking. If the hoard is a gift from a benefactor, use the challenge rating equal to the partys 
+average level.
+The Dungeon Master's Guide (DMG) Ch. 7">Hoard Loot</button>        
       <div id="hoard-roll-container" style="display: none;">
         <button onclick="rollHoardTreasure('0-4')">CR 0-4</button>
         <button onclick="rollHoardTreasure('5-10')">CR 5-10</button>
@@ -161,42 +196,73 @@
 <button id="vendor-roller-button" onclick="toggleVendorButtons()">VENDORS</button>
 <div id="vendor-button-container" style="display: none;">
   <div id="vendor-buttons-container">
-<button onclick="toggleVendorContainer('gs-vendor-roll-container')">-----General Store-----</button>
+<button onclick="toggleVendorContainer('gs-vendor-roll-container')">General Store</button>
 <div id="gs-vendor-roll-container" class="vendor-container" style="display: none;">
-  <button onclick="rollGSVendorInventory('Wretched')">Wretched General Store</button>
-  <button onclick="rollGSVendorInventory('Poor')">Poor General Store</button>
-  <button onclick="rollGSVendorInventory('Modest')">Modest General Store</button>
-  <button onclick="rollGSVendorInventory('Comfortable')">Comfortable General Store</button>
-  <button onclick="rollGSVendorInventory('Rich')">Rich General Store</button>
+  <button onclick="rollGSVendorInventory('Wretched')" title="Wretched quality General Store">Wretched General Store</button>
+  <button onclick="rollGSVendorInventory('Poor')" title="Poor quality General Store">Poor General Store</button>
+  <button onclick="rollGSVendorInventory('Modest')" title="Modest quality General Store">Modest General Store</button>
+  <button onclick="rollGSVendorInventory('Comfortable')" title="Comfortable quality General Store">Comfortable General Store</button>
+  <button onclick="rollGSVendorInventory('Rich')" title="Wealthy quality General Store">Rich General Store</button>
+  <button onclick="rollVendorTier()" title="Generate a Random General Store Tier Selection">Random Gen Store Type</button>
 </div>
 
-<button onclick="toggleVendorContainer('Apothicary-vendor-roll-container')">-----Apothicary-----</button>
+<button onclick="toggleVendorContainer('Apothicary-vendor-roll-container')">Apothicary</button>
 <div id="Apothicary-vendor-roll-container" class="vendor-container" style="display: none;">
-  <button onclick="rollApothicaryVendorInventory('Wretched')">Wretched Apothicary</button>
-  <button onclick="rollApothicaryVendorInventory('Poor')">Poor Apothicary</button>
-  <button onclick="rollApothicaryVendorInventory('Modest')">Modest Apothicary</button>
-  <button onclick="rollApothicaryVendorInventory('Comfortable')">Comfortable Apothicary</button>
-  <button onclick="rollApothicaryVendorInventory('Rich')">Rich Apothicary</button>
+  <button onclick="rollApothicaryVendorInventory('Wretched')" title="Wretched quality Apothicary">Wretched Apothicary</button>
+  <button onclick="rollApothicaryVendorInventory('Poor')" title="Poor quality Apothicary">Poor Apothicary</button>
+  <button onclick="rollApothicaryVendorInventory('Modest')" title="Modest quality Apothicary">Modest Apothicary</button>
+  <button onclick="rollApothicaryVendorInventory('Comfortable')" title="Skilled quality Apothicary">Comfortable Apothicary</button>
+  <button onclick="rollApothicaryVendorInventory('Rich')" title="Fine quality Apothicary">Rich Apothicary</button>
+  <button onclick="rollVendorTier()" title="Generate a Random Apothicary Tier Selection">Random Apothicary Type</button>
 </div>
 
-<button onclick="toggleVendorContainer('Weapons-and-armor-vendor-roll-container')">-----Weapons and Armor-----</button>
+<button onclick="toggleVendorContainer('Weapons-and-armor-vendor-roll-container')">Weapons and Armor</button>
 <div id="Weapons-and-armor-vendor-roll-container" class="vendor-container" style="display: none;">
-  <button onclick="rollWeaponsAndArmorVendorInventory('Wretched')">Wretched W & A Shop</button>
-  <button onclick="rollWeaponsAndArmorVendorInventory('Poor')">Poor W & A Shop</button>
-  <button onclick="rollWeaponsAndArmorVendorInventory('Modest')">Modest W & A Shop</button>
-  <button onclick="rollWeaponsAndArmorVendorInventory('Comfortable')">Comfortable W & A Shop</button>
-  <button onclick="rollWeaponsAndArmorVendorInventory('Rich')">Rich W & A Shop</button>
+  <button onclick="rollWeaponsAndArmorVendorInventory('Wretched')" title="Wretched quality W & A Shop">Wretched W & A Shop</button>
+  <button onclick="rollWeaponsAndArmorVendorInventory('Poor')" title="Poor quality W & A Shop">Poor W & A Shop</button>
+  <button onclick="rollWeaponsAndArmorVendorInventory('Modest')" title="Modest quality W & A Shop">Modest W & A Shop</button>
+  <button onclick="rollWeaponsAndArmorVendorInventory('Comfortable')" title="Comfortable quality W & A Shop">Comfortable W & A Shop</button>
+  <button onclick="rollWeaponsAndArmorVendorInventory('Rich')" title="Castle quality W & A Shop">Rich W & A Shop</button>
+  <button onclick="rollVendorTier()" title="Generate a Random W&A Tier Selection">Random W&A Type</button>
 </div>
 
-<button onclick="toggleVendorContainer('black-market-roll-container')">-----Black Market-----</button>
-<div id="black-market-roll-container" class="vendor-container" style="display: none;">
-  <button onclick="rollBlackMarketVendorInventory('Random')">Random Black Market</button>
-  <button onclick="rollBlackMarketVendorInventory('Poor')">Poor Black Market</button>
-  <button onclick="rollBlackMarketVendorInventory('Modest')">Modest Black Market</button>
-  <button onclick="rollBlackMarketVendorInventory('Comfortable')">Comfortable Black Market</button>
-  <button onclick="rollBlackMarketVendorInventory('Rich')">Rich Black Market</button>
-</div>
+<button onclick="toggleVendorContainer('sell-magic-item-roll-container')"title="In Dungeons & Dragons 5th Edition, the official rules do not provide specific guidelines for the rate at
+which vendors or merchants pay for magical items. 
 
+The Dungeon Master's Guide (DMG) provides a table on page 135 that lists the rarity categories for 
+magical items (common, uncommon, rare, very rare, and legendary). The listed prices in this table 
+are meant to represent the value of purchasing such items, rather than what a vendor might offer for them.
+
+When determining the price at which vendors or merchants would buy magical items, it's ultimately
+up to the Dungeon Master's discretion. Factors to consider could include the availability of similar
+items in the market, the demand for magical items, the merchant's resources, and the specific
+negotiation skills or circumstances of the party.
+
+The DMG does mention that selling magical items can be a difficult task, as not every merchant will
+have the means or desire to purchase such items. It is recommended for the DM to roleplay the
+negotiation process or use the Selling a Magic Item downtime activity (DMG, page 129) as a guideline
+for determining the value and willingness of a vendor to buy magical items.
+
+Ultimately, the specific rates for buying magical items can be adjusted based on the needs and balance 
+of the campaign, the setting's economy, and the DM's narrative and world-building decisions.">Sell Magic Item</button>
+<div id="sell-magic-item-roll-container" class="vendor-container" style="display: none;">  
+  <button onclick="getBuyerCommonItem()"title="1 to 4 days, Investigation DC 20 to succeed, 
+CHA Persuasion by Investigator added to d100 roll, 
++10. 1 roller per check. Assistants give advantage 
+to Investigator.">Find Buyer-Common Item</button>
+  <button onclick="getBuyerUnCommonItem()"title="1 to 6 days, Investigation DC 20 to succeed, 
+CHA Persuasion by Investigator added to d100 roll, 
+-0. 1 roller per check. Assistants give advantage 
+to Investigator.">Find Buyer-Uncommon Item</button>
+  <button onclick="getBuyerRareItem()"title="1 to 8 days, Investigation DC 20 to succeed, 
+CHA Persuasion by Investigator added to d100 roll, 
+-10. 1 roller per check. Assistants give advantage 
+to Investigator.">Find Buyer-Rare Item</button>
+  <button onclick="getBuyerVeryRareItem()"title="1 to 10 days, Investigation DC 20 to succeed, 
+CHA Persuasion by Investigator added to d100 roll, 
+-20. 1 roller per check. Assistants give advantage 
+to Investigator.">Find Buyer-Very Rare Item</button>
+</div>
 <script src="module.js"></script>
 <script>
 
@@ -625,6 +691,65 @@ function rollDMSVendorInventory(wealthRange) {
         document.onmousemove = null;
       }
       
+     
+async function getBuyer() {
+  const content = `
+    <form>
+      <p>Enter your Investigation and Persuasion rolls:</p>
+      <div class="form-group">
+        <label for="investigation">Investigation:</label>
+        <input type="text" id="investigation" name="investigation" value="0">
+      </div>
+      <div class="form-group">
+        <label for="persuasion">Persuasion:</label>
+        <input type="text" id="persuasion" name="persuasion" value="0">
+      </div>
+    </form>
+  `;
+  const result = await new Promise((resolve) => {
+    new Dialog({
+      title: "Sell Magic Items",
+      content,
+      buttons: {
+        roll: {
+          label: "Roll",
+          callback: (html) => {
+            resolve({
+              investigation: parseInt(html.find("#investigation").val()) || 0,
+              persuasion: parseInt(html.find("#persuasion").val()) || 0,
+            });
+          },
+        },
+        cancel: {
+          label: "Cancel",
+        },
+      },
+    }).render(true);
+  });
+
+  const { investigation, persuasion } = result;
+  const totalRoll = investigation > 19 ? Math.floor(Math.random() * 100) + 1 + persuasion : 0;
+  let buyer = null;
+
+  for (const range of searchForBuyer) {
+    if (range.range[0] <= totalRoll && range.range[1] >= totalRoll) {
+      buyer = range.item();
+      break;
+    }
+  }
+
+  if (buyer) {
+    const messageData = {
+      content: `You have found ${buyer.item.name}! Roll Total: ${totalRoll}`,
+      speaker: ChatMessage.getSpeaker(),
+      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+      flags: { img: buyer.item.image },
+    };
+    ChatMessage.create(messageData, {});
+  } else {
+    alert(`You were unable to find a buyer. Roll Total: ${totalRoll}`);
+  }
+}
     </script>
   </body>
 </html>

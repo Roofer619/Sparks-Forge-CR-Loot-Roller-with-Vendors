@@ -1,0 +1,26 @@
+2023/05/29-20:18:47.269 5aa4 Recovering log #31
+2023/05/29-20:18:47.275 5aa4 Level-0 table #33: started
+2023/05/29-20:18:47.452 5aa4 Level-0 table #33: 895736 bytes OK
+2023/05/29-20:18:47.615 5aa4 Delete type=0 #19
+2023/05/29-20:18:47.615 5aa4 Delete type=2 #22
+2023/05/29-20:18:47.615 5aa4 Delete type=0 #31
+2023/05/29-20:18:47.616 5aa4 Delete type=3 #17
+2023/05/29-20:18:47.616 5aa4 Delete type=3 #30
+2023/05/29-20:25:17.835 7090 Level-0 table #36: started
+2023/05/29-20:25:17.835 7090 Level-0 table #36: 0 bytes OK
+2023/05/29-20:25:17.894 7090 Delete type=0 #34
+2023/05/29-20:25:17.894 7090 Manual compaction at level-0 from '!items!00BggOkChWztQx6R' @ 72057594037927935 : 1 .. '!items.effects!mr96Z8YTI490ExhP.x6gy8sik893jvxea' @ 0 : 0; will stop at '!items!zibIgdxPz8QHSCg6' @ 1920 : 1
+2023/05/29-20:25:17.896 7090 Compacting 1@0 + 0@1 files
+2023/05/29-20:25:18.045 7090 Generated table #37@0: 957 keys, 894463 bytes
+2023/05/29-20:25:18.045 7090 Compacted 1@0 + 0@1 files => 894463 bytes
+2023/05/29-20:25:18.109 7090 compacted to: files[ 0 1 1 0 0 0 0 ]
+2023/05/29-20:25:18.110 7090 Delete type=2 #33
+2023/05/29-20:25:18.110 7090 Manual compaction at level-0 from '!items!zibIgdxPz8QHSCg6' @ 1920 : 1 .. '!items.effects!mr96Z8YTI490ExhP.x6gy8sik893jvxea' @ 0 : 0; will stop at (end)
+2023/05/29-20:25:18.110 7090 Manual compaction at level-1 from '!items!00BggOkChWztQx6R' @ 72057594037927935 : 1 .. '!items.effects!mr96Z8YTI490ExhP.x6gy8sik893jvxea' @ 0 : 0; will stop at '!items!zibIgdxPz8QHSCg6' @ 1920 : 1
+2023/05/29-20:25:18.110 7090 Compacting 1@1 + 1@2 files
+2023/05/29-20:25:18.256 7090 Generated table #38@1: 965 keys, 897277 bytes
+2023/05/29-20:25:18.256 7090 Compacted 1@1 + 1@2 files => 897277 bytes
+2023/05/29-20:25:18.326 7090 compacted to: files[ 0 0 1 0 0 0 0 ]
+2023/05/29-20:25:18.326 7090 Delete type=2 #5
+2023/05/29-20:25:18.327 7090 Delete type=2 #37
+2023/05/29-20:25:18.327 7090 Manual compaction at level-1 from '!items!zibIgdxPz8QHSCg6' @ 1920 : 1 .. '!items.effects!mr96Z8YTI490ExhP.x6gy8sik893jvxea' @ 0 : 0; will stop at (end)
