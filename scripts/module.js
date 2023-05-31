@@ -12750,7 +12750,7 @@ await JournalEntry.create({
   }}
               
   window.addEventListener('load', function() {
-  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
   if (xhr.readyState === 4 && xhr.status === 200) {
@@ -13007,7 +13007,7 @@ game.socket.emit("createJournalEntry", { journalEntry });
 }}
             
 window.addEventListener('load', function() {
-const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
 const xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function() {
 if (xhr.readyState === 4 && xhr.status === 200) {
@@ -13241,7 +13241,7 @@ game.socket.emit("createJournalEntry", { journalEntry });
 }}
             
 window.addEventListener('load', function() {
-const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
 const xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function() {
 if (xhr.readyState === 4 && xhr.status === 200) {
@@ -13494,7 +13494,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
     }}
                 
     window.addEventListener('load', function() {
-    const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+    const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -14623,7 +14623,7 @@ await JournalEntry.create({
 }}
                 
   window.addEventListener('load', function() {
-  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -14878,7 +14878,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
     }}}
                     
       window.addEventListener('load', function() {
-      const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+      const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
       const xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -15127,7 +15127,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
         }}}
                         
           window.addEventListener('load', function() {
-          const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+          const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
           const xhr = new XMLHttpRequest();
           xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
@@ -15375,7 +15375,7 @@ await JournalEntry.create({
 }}}
                 
   window.addEventListener('load', function() {
-  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -15623,7 +15623,7 @@ await JournalEntry.create({
 }}}
                 
   window.addEventListener('load', function() {
-  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -22928,7 +22928,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
         }}}
         
         window.addEventListener('load', function() {
-          const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+          const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
           const xhr = new XMLHttpRequest();
           xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
@@ -23384,7 +23384,7 @@ game.socket.emit("createJournalEntry", { journalEntry });
 }}}
             
 window.addEventListener('load', function() {
-const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
 const xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function() {
 if (xhr.readyState === 4 && xhr.status === 200) {
@@ -23891,7 +23891,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
                 }}}
                 
                 window.addEventListener('load', function() {
-                  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+                  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
                   const xhr = new XMLHttpRequest();
                   xhr.onreadystatechange = function() {
                     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -24394,7 +24394,7 @@ new Dialog({
 }}}
                 
   window.addEventListener('load', function() {
-  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -24900,7 +24900,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
                 }}}
                 
                 window.addEventListener('load', function() {
-                  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+                  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
                   const xhr = new XMLHttpRequest();
                   xhr.onreadystatechange = function() {
                     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -25378,7 +25378,7 @@ const journalEntryName = `Apothicary Wretched Vendor (${timeStamp})`;
 }}}
                 
   window.addEventListener('load', function() {
-  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -25856,7 +25856,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
 }}}
                 
   window.addEventListener('load', function() {
-  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -26334,7 +26334,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
 }}}
                 
   window.addEventListener('load', function() {
-  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -26813,7 +26813,7 @@ if (!game.user.isGM) {
 }}}
 
 window.addEventListener('load', function() {
-  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -27291,7 +27291,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
 }}}
                 
   window.addEventListener('load', function() {
-  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -27974,7 +27974,7 @@ await JournalEntry.create({
 }}}
                 
   window.addEventListener('load', function() {
-  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -28225,7 +28225,7 @@ await JournalEntry.create({
 }}}
                 
   window.addEventListener('load', function() {
-  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -28501,7 +28501,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
         }}}
                         
           window.addEventListener('load', function() {
-          const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+          const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
           const xhr = new XMLHttpRequest();
           xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
@@ -28786,7 +28786,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
     }}}
                     
       window.addEventListener('load', function() {
-      const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+      const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
       const xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
