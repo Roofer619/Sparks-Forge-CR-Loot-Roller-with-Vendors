@@ -48,449 +48,6 @@ Hooks.once('init', () => {
   toggleDecks = decksSetting;
 });
 
-let toggleTashas = false;
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableTashas", {
-    description: "Enable Tasha's Cauldron of Everything Content",
-    name: "Tasha's Cauldron of Everything",
-    hint: "Enables Tasha's Cauldron of Everything to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Beta in progress. Concludes 30.06.2023",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean,
-    onChange: value => {
-      toggleTashas = value;
-      console.log(`Tasha's Cauldron of Everything toggle is ${toggleTashas}`);
-      ChatMessage.create({ content: `Tasha's Cauldron of Everything toggle is ${toggleTashas}`, speaker: ChatMessage.getSpeaker() });
-    }
-  });
-
-  const tashasSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableTashas");
-  toggleTashas = tashasSetting;
-});
-
-let toggleXanathars = false;
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableXanathars", {
-    description: "Enable Xanathar's Guide to Everything Content",
-    name: "Xanathar's Guide to Everything",
-    hint: "Enables Xanathar's Guide to Everything Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean,
-    onChange: value => {
-      toggleXanathars = value;
-      console.log(`Xanathar's Guide to Everything toggle is ${toggleXanathars}`);
-      ChatMessage.create({ content: `Xanathar's Guide to Everything toggle is ${toggleXanathars}`, speaker: ChatMessage.getSpeaker() });
-    }
-  });
-
-  const xanatharsSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableXanathars");
-  toggleXanathars = xanatharsSetting;
-});
-
-let toggleEberron = false;
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableEberron", {
-    description: "Enable Eberron The Last War Content",
-    name: "Eberron The Last War",
-    hint: "Enables Eberron Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean,
-    onChange: value => {
-      toggleEberron = value;
-      console.log(`Eberron The Last War toggle is ${toggleEberron}`);
-      ChatMessage.create({ content: `Eberron The Last War toggle is ${toggleEberron}`, speaker: ChatMessage.getSpeaker() });
-    }
-  });
-
-  const eberronSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableEberron");
-  toggleEberron = eberronSetting;
-});
-
-let toggleGuildmasters = false;
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableGuildmastersGtR", {
-    description: "Enable Guildmasters' Guide to Ravnica Content",
-    name: "Guildmasters' Guide to Ravnica",
-    hint: "Enables Guildmasters' Guide to Ravnica Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean,
-    onChange: value => {
-      toggleGuildmasters = value;
-      console.log(`Guildmaster' Guide to Ravnica toggle is ${toggleGuildmasters}`);
-      ChatMessage.create({ content: `Guildmaster' Guide to Ravnica toggle is ${toggleGuildmasters}`, speaker: ChatMessage.getSpeaker() });
-    }
-  });
-
-  const guildmastersSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableGuildmastersGtR");
-  toggleGuildmasters = guildmastersSetting;
-});
-
-let toggleAcquisitions = false;
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableAcquisitionsIncorporated", {
-    description: "Enable Acquisitions Incorporated Content",
-    name: "Acquisitions Incorporated",
-    hint: "Enables Acquisitions Incorporated Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean,
-    onChange: value => {
-      toggleAcquisitions = value;
-      console.log(`Acquisitions Incorporated toggle is ${toggleAcquisitions}`);
-      ChatMessage.create({ content: `Acquisitions Incorporated toggle is ${toggleAcquisitions}`, speaker: ChatMessage.getSpeaker() });
-    }
-  });
-
-  const acquisitionsSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableAcquisitionsIncorporated");
-  toggleAcquisitions = acquisitionsSetting;
-});
-
-let toggleTheros = false;
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableTheros", {
-    description: "Enable Mythic Odysseys of Theros Content",
-    name: "Mythic Odysseys of Theros",
-    hint: "Enables Mythic Odysseys of Theros Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean,
-    onChange: value => {
-      toggleTheros = value;
-      console.log(`Mythic Odysseys of Theros toggle is ${toggleTheros}`);
-      ChatMessage.create({ content: `Mythic Odysseys of Theros toggle is ${toggleTheros}`, speaker: ChatMessage.getSpeaker() });
-    }
-  });
-
-  const therosSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableTheros");
-  toggleTheros = therosSetting;
-});
-
-let toggleFizbans = false;
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableFizbans", {
-    description: "Enable Fizbans Treasury of Dragons Content",
-    name: "Fizbans Treasury of Dragons",
-    hint: "Enables Fizbans Treasury of Dragons Hoard Related Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean,
-    onChange: value => {
-      toggleTheros = value;
-      console.log(`Fizbans Treasury of Dragons toggle is ${toggleFizbans}`);
-      ChatMessage.create({ content: `Fizbans Treasury of Dragons toggle is ${toggleFizbans}`, speaker: ChatMessage.getSpeaker() });
-    }
-  });
-
-  const fizbansSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableFizbans");
-  toggleFizbans = fizbansSetting;
-});
-
-let toggleStrixhaven = false;
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableStrixhaven", {
-    description: "Enable Strixhaven: A Curriculum of Chaos Content",
-    name: "Strixhaven: A Curriculum of Chaos",
-    hint: "Enables Strixhaven: A Curriculum of Chaos Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean,
-    onChange: value => {
-      toggleTheros = value;
-      console.log(`Strixhaven: A Curriculum of Chaos toggle is ${toggleStrixhaven}`);
-      ChatMessage.create({ content: `Strixhaven: A Curriculum of Chaos toggle is ${toggleStrixhaven}`, speaker: ChatMessage.getSpeaker() });
-    }
-  });
-
-  const strixhavenSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableStrixhaven");
-  toggleStrixhaven = strixhavenSetting;
-});
-
-let toggleSpellJammer = false;
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableSpellJammer", {
-    description: "Enable Spelljammer: Adventures in Space Content",
-    name: "Spelljammer: Adventures in Space",
-    hint: "Enables Spelljammer: Adventures in Space Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean,
-    onChange: value => {
-      toggleTheros = value;
-      console.log(`SSpelljammer: Adventures in Space toggle is ${toggleSpellJammer}`);
-      ChatMessage.create({ content: `Spelljammer: Adventures in Space toggle is ${toggleSpellJammer}`, speaker: ChatMessage.getSpeaker() });
-    }
-  });
-
-  const spellJammerSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendor", "enableSpellJammer");
-  toggleSpellJammer = spellJammerSetting;
-});
-
-let toggleApocalypse = false;
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enablePrincesoftheApocalypse", {
-    description: "Enable Princes of the Apocalypse Content",
-    name: "Princes of the Apocalypse",
-    hint: "Enables Princes of the Apocalypse Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean,
-    onChange: value => {
-      toggleTheros = value;
-      console.log(`Princes of the Apocalypse toggle is ${toggleApocalypse}`);
-      ChatMessage.create({ content: `Princes of the Apocalypse toggle is ${toggleApocalypse}`, speaker: ChatMessage.getSpeaker() });
-    }
-  });
-
-  const apocalypseSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enablePrincesoftheApocalypse");
-  toggleApocalypse = apocalypseSetting;
-});
-
-let toggleAbyss = false;
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableOutoftheAbyss", {
-    description: "Enable Out of the Abyss Content",
-    name: "Out of the Abyss",
-    hint: "Enables Out of the Abyss Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean,
-    onChange: value => {
-      toggleTheros = value;
-      console.log(`Out of the Abyss toggle is ${toggleAbyss}`);
-      ChatMessage.create({ content: `Out of the Abyss toggle is ${toggleAbyss}`, speaker: ChatMessage.getSpeaker() });
-    }
-  });
-
-  const abyssSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableOutoftheAbyss");
-  toggleAbyss = abyssSetting;
-});
-
-let toggleThunder = false;
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableStormKingsThunder", {
-    description: "Enable Storm Kings Thunder Content",
-    name: "Storm Kings Thunder",
-    hint: "Enables Storm Kings Thunder Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean,
-    onChange: value => {
-      toggleTheros = value;
-      console.log(`Storm Kings Thunder is ${toggleThunder}`);
-      ChatMessage.create({ content: `Storm Kings Thunder is ${toggleThunder}`, speaker: ChatMessage.getSpeaker() });
-    }
-  });
-
-  const thunderSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableStormKingsThunder");
-  toggleThunder = thunderSetting;
-});
-
-let toggleYawningPortal = false;
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableTalesFromTheYawningPortal", {
-    description: "Enable Tales from the Yawning Portal Content",
-    name: "Tales from the Yawning Portal",
-    hint: "Enables Tales from the Yawning Portal Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean,
-    onChange: value => {
-      toggleTheros = value;
-      console.log(`Tales from the Yawning Portal is ${toggleYawningPortal}`);
-      ChatMessage.create({ content: `Tales from the Yawning Portal is ${toggleYawningPortal}`, speaker: ChatMessage.getSpeaker() });
-    }
-  });
-
-  const yawningPortalSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableTalesFromTheYawningPortal");
-  toggleYawningPortal = yawningPortalSetting;
-});
-
-let toggleAnnihilation = false;
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableTombofAnnihilation", {
-    description: "Enable Tomb of Annihilation Content",
-    name: "Tomb of Annihilation",
-    hint: "Enables Tomb of Annihilation Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean,
-    onChange: value => {
-      toggleTheros = value;
-      console.log(`Tomb of Annihilation is ${toggleAnnihilation}`);
-      ChatMessage.create({ content: `Tomb of Annihilation is ${toggleAnnihilation}`, speaker: ChatMessage.getSpeaker() });
-    }
-  });
-
-  const annihilationSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableTombofAnnihilation");
-  toggleAnnihilation = annihilationSetting;
-});
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableWaterdeepDragonHeist", {
-    description: "Enable Waterdeep: Dragon Heist Content",
-    name: "Waterdeep: Dragon Heist",
-    hint: "Enables Waterdeep: Dragon Heist Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean
-  });
-
-  const dragonHeistSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableWaterdeepDragonHeist");
-  toggleDragonHeist = dragonHeistSetting;
-});
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableLostLab", {
-    description: "Enable Lost Laboratory of Kwalish Content",
-    name: "Lost Laboratory of Kwalish",
-    hint: "Enables Lost Laboratory of Kwalish Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean
-  });
-
-  const lostLabSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableLostLab");
-  toggleLostLab = lostLabSetting;
-});
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableSaltmarsh", {
-    description: "Enable Ghosts of Saltmarsh Content",
-    name: "Ghosts of Saltmarsh",
-    hint: "Enables Ghosts of Saltmarsh Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean
-  });
-
-  const saltmarshSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableSaltmarsh");
-  toggleSaltmarsh = saltmarshSetting;
-});
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableThessalhydra", {
-    description: "Enable Hunt for the Thessalhydra Content",
-    name: "Hunt for the Thessalhydra",
-    hint: "Enables Hunt for the Thessalhydra Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean
-  });
-
-  const thessalhydraSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableThessalhydra");
-  toggleThessalhydra = thessalhydraSetting;
-});
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableAvernus", {
-    description: "Enable Baldur's Gate: Descent into Avernus Content",
-    name: "Baldur's Gate: Descent into Avernus",
-    hint: "Enables Baldur's Gate: Descent into Avernus Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean
-  });
-
-  const avernusSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableAvernus");
-  toggleAvernus = avernusSetting;
-});
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableInfernalMachineRebuild", {
-    description: "Enable Infernal Machine Rebuild Content",
-    name: "Infernal Machine Rebuild",
-    hint: "Enables Infernal Machine Rebuild Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean
-  });
-
-  const machineRebuildSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableInfernalMachineRebuild");
-  toggleMachineRebuild = machineRebuildSetting;
-});
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableFrostmaiden", {
-    description: "Enable Icewind Dale: Rime of the Frostmaiden Content",
-    name: "Icewind Dale: Rime of the Frostmaiden",
-    hint: "Enables Icewind Dale: Rime of the Frostmaiden Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean
-  });
-
-  const frostmaidenSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableFrostmaiden");
-  toggleFrostmaiden = frostmaidenSetting;
-});
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableWitchlight", {
-    description: "Enable The Wild Beyond the Witchlight Content",
-    name: "The Wild Beyond the Witchlight",
-    hint: "Enables Icewind Dale: Rime of the Frostmaiden into Avernus Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean
-  });
-
-  const witchlightSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableWitchlight");
-  toggleWitchlight = witchlightSetting;
-});
-
-Hooks.once('init', () => {
-  game.settings.register("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableDragonlance", {
-    description: "Enable Dragonlance: Shadow of the Dragon Queen Content",
-    name: "Dragonlance: Shadow of the Dragon Queen",
-    hint: "Enables Dragonlance: Shadow of the Dragon Queen Content Magic Items to appear in CR Loot rolls, when checked. Requires GM (f5) reload to disable. Alpha in progress.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean
-  });
-
-  const dragonlanceSetting = game.settings.get("Sparks-Forge-CR-Loot-Roller-with-Vendors", "enableDragonlance");
-  toggleDragonlance = dragonlanceSetting;
-});
-
 Hooks.on("socketlib.ready", () => {
   game.socket.on("createJournalEntry", ({ journalEntry }) => {
     const chatData = {
@@ -12750,7 +12307,7 @@ await JournalEntry.create({
   }}
               
   window.addEventListener('load', function() {
-  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
   if (xhr.readyState === 4 && xhr.status === 200) {
@@ -13007,7 +12564,7 @@ game.socket.emit("createJournalEntry", { journalEntry });
 }}
             
 window.addEventListener('load', function() {
-const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
 const xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function() {
 if (xhr.readyState === 4 && xhr.status === 200) {
@@ -13241,7 +12798,7 @@ game.socket.emit("createJournalEntry", { journalEntry });
 }}
             
 window.addEventListener('load', function() {
-const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
 const xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function() {
 if (xhr.readyState === 4 && xhr.status === 200) {
@@ -13494,7 +13051,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
     }}
                 
     window.addEventListener('load', function() {
-    const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+    const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -14623,7 +14180,7 @@ await JournalEntry.create({
 }}
                 
   window.addEventListener('load', function() {
-  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -14878,7 +14435,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
     }}}
                     
       window.addEventListener('load', function() {
-      const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+      const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
       const xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -15127,7 +14684,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
         }}}
                         
           window.addEventListener('load', function() {
-          const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+          const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
           const xhr = new XMLHttpRequest();
           xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
@@ -15375,7 +14932,7 @@ await JournalEntry.create({
 }}}
                 
   window.addEventListener('load', function() {
-  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -15623,7 +15180,7 @@ await JournalEntry.create({
 }}}
                 
   window.addEventListener('load', function() {
-  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -22928,7 +22485,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
         }}}
         
         window.addEventListener('load', function() {
-          const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+          const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
           const xhr = new XMLHttpRequest();
           xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
@@ -23384,7 +22941,7 @@ game.socket.emit("createJournalEntry", { journalEntry });
 }}}
             
 window.addEventListener('load', function() {
-const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
 const xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function() {
 if (xhr.readyState === 4 && xhr.status === 200) {
@@ -23891,7 +23448,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
                 }}}
                 
                 window.addEventListener('load', function() {
-                  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+                  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
                   const xhr = new XMLHttpRequest();
                   xhr.onreadystatechange = function() {
                     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -24394,7 +23951,7 @@ new Dialog({
 }}}
                 
   window.addEventListener('load', function() {
-  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -24900,7 +24457,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
                 }}}
                 
                 window.addEventListener('load', function() {
-                  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+                  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
                   const xhr = new XMLHttpRequest();
                   xhr.onreadystatechange = function() {
                     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -25378,7 +24935,7 @@ const journalEntryName = `Apothicary Wretched Vendor (${timeStamp})`;
 }}}
                 
   window.addEventListener('load', function() {
-  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -25856,7 +25413,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
 }}}
                 
   window.addEventListener('load', function() {
-  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -26334,7 +25891,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
 }}}
                 
   window.addEventListener('load', function() {
-  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -26813,7 +26370,7 @@ if (!game.user.isGM) {
 }}}
 
 window.addEventListener('load', function() {
-  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -27291,7 +26848,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
 }}}
                 
   window.addEventListener('load', function() {
-  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -27974,7 +27531,7 @@ await JournalEntry.create({
 }}}
                 
   window.addEventListener('load', function() {
-  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -28225,7 +27782,7 @@ await JournalEntry.create({
 }}}
                 
   window.addEventListener('load', function() {
-  const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+  const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -28501,7 +28058,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
         }}}
                         
           window.addEventListener('load', function() {
-          const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+          const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
           const xhr = new XMLHttpRequest();
           xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
@@ -28786,7 +28343,7 @@ const timeStamp = `${year}-${(now.getMonth() + 1).toString().padStart(2, '0')}-$
     }}}
                     
       window.addEventListener('load', function() {
-      const path = 'modules/sparks-forge-cr-loot-roller-with-vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
+      const path = 'modules/Sparks-Forge-CR-Loot-Roller-with-Vendors/templates/Sparks-Forge-CR-Loot-Roller-TB.html';
       const xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
